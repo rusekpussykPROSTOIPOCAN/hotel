@@ -1,0 +1,22 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:s="clr-namespace:System;assembly=System.Runtime">
+
+    <s:String x:Key="Hello">Очень крутое приветствие</s:String>
+    <s:String x:Key="Log">Введите логин</s:String>
+    <s:String x:Key="Pass">Введите пароль</s:String>
+    <s:String x:Key="entry">Вход</s:String>
+    <s:String x:Key="position">Выбери позицию</s:String>
+    <s:String x:Key="bookingtext">Просмотр брони</s:String>
+    <s:String x:Key="numstext">Просмотр номеров</s:String>
+    <s:String x:Key="scheduletext">Просмотр графика</s:String>
+    <s:String x:Key="gueststext">Просмотр гостей</s:String>
+    <s:String x:Key="selltext">Просмотр продаж</s:String>
+    <s:String x:Key="taskstext">Просмотр заданий</s:String>
+    <s:String x:Key="editguesttext">Редактировать гостя</s:String>
+    <s:String x:Key="deleteguesttext">Удалить гостя</s:String>
+    <s:String x:Key="createtasktext">Создать задание</s:String>
+    <s:String x:Key="deletetasktext">Удалить задание</s:String>
+    <s:String x:Key="edittasktext">Редактировать задание</s:String>
+    <s:String x:Key="searchstring">Найти</s:String>
+</ResourceDictionary>

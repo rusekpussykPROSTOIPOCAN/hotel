@@ -1,0 +1,35 @@
+﻿<Window x:Class="hotel.Views.Admin.AdminBoard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:hotel.Views.Admin"
+        mc:Ignorable="d"
+            xmlns:btn="clr-namespace:hotel.Common.Base"
+xmlns:textbox="clr-namespace:hotel.Common.Base"
+        Title="AdminBoard" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+    <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal">
+
+        <btn:Btn Placeholder="{StaticResource  bookingtext}" Click="MyBtn_Click" Wigth="105"/>
+        <btn:Btn  Placeholder="{StaticResource gueststext}" Click="MyBtn_Click_1"  Wigth="105"/>
+        <btn:Btn  Placeholder="{StaticResource numstext}" Click="MyBtn_Click_2"  Wigth="120"/>
+        <btn:Btn  Placeholder="{StaticResource scheduletext}" Click="MyBtn_Click_3"  Wigth="120"/>
+
+        <btn:Btn  Placeholder="{StaticResource taskstext}" Click="MyBtn_Click_4"  Wigth="120"/>
+        <btn:Btn  Placeholder="{StaticResource selltext}" Click="MyBtn_Click_5"  Wigth="120"/>
+    </StackPanel>
+        <ContentControl Grid.Row="1">
+            <ContentControl.Resources>
+                <DataTemplate>
+                    <!-- страничка -->
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
+    </Grid>
+</Window>
