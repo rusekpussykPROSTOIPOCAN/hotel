@@ -6,29 +6,34 @@
         xmlns:local="clr-namespace:hotel.Views.Admin"
         mc:Ignorable="d"
          xmlns:usercontr="clr-namespace:hotel.Common.Base"
+        xmlns:con="clr-namespace:hotel.Common.Base"
             xmlns:btn="clr-namespace:hotel.Common.Base"
 xmlns:textbox="clr-namespace:hotel.Common.Base"
         xmlns:vm="clr-namespace:hotel.ViewModels.Admin"
-        Title="AdminBoard" Height="450" Width="800">
+        Title="AdminBoard" Height="600" Width="800">
     <Window.DataContext>
         <vm:AdminBoardModel/>
     </Window.DataContext>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
-    <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal">
 
-        <btn:Btn   Placeholder="{StaticResource  bookingtext}" command="{Binding ShowFirstCommand}"  Wigth="105"/>
-        <btn:Btn  Placeholder="{StaticResource gueststext}"   Wigth="105"/>
-        <btn:Btn  Placeholder="{StaticResource numstext}"   Wigth="120"/>
-        <btn:Btn  Placeholder="{StaticResource scheduletext}"   Wigth="120"/>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2" >
 
-        <btn:Btn  Placeholder="{StaticResource taskstext}"  Wigth="120"/>
-        <btn:Btn  Placeholder="{StaticResource selltext}"   Wigth="120"/>
-    </StackPanel>
-        
+            <btn:Btn   Placeholder="{StaticResource  bookingtext}" Command="{Binding ShowFirstCommand}"  Wigth="105"/>
+            <btn:Btn  Placeholder="{StaticResource gueststext}"   Command="{Binding ShowSecondCommand}" Wigth="105"/>
+            <btn:Btn  Placeholder="{StaticResource numstext}"   Wigth="120"/>
+            <btn:Btn  Placeholder="{StaticResource scheduletext}"   Wigth="120"/>
+
+            <btn:Btn  Placeholder="{StaticResource taskstext}"  Wigth="120"/>
+            <btn:Btn  Placeholder="{StaticResource selltext}"   Wigth="120"/>
+        </StackPanel>
+        <con:DashBoasrdForAdmin Grid.Row="1" UserControl="{Binding CurrentPage}" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>

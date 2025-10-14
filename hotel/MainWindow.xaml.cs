@@ -1,4 +1,5 @@
 ﻿
+using hotel.Views.Admin;
 using System.Windows;
 
 
@@ -13,6 +14,12 @@ namespace hotel
         {
             InitializeComponent();
         }
-        
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AdminBoard board = new AdminBoard();
+            board.Show();
+            this.Close();
+        }
     }
 }

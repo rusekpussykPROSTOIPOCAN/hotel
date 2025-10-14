@@ -6,5 +6,5 @@
              xmlns:local="clr-namespace:hotel.Common.Base"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" x:Name="root">
-    <ContentControl  Content="{Binding userControl,ElementName=root}"/>
+    <ContentControl  Content="{Binding UserControl,ElementName=root}"/>
 </UserControl>

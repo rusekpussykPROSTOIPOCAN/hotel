@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace hotel.Views.Admin
 {
     /// <summary>
-    /// Логика взаимодействия для Guests.xaml
+    /// Логика взаимодействия для GuestsBoard.xaml
     /// </summary>
-    public partial class Guests : Window
+    public partial class GuestsBoard : UserControl
     {
-        public Guests()
+        public GuestsBoard()
         {
             InitializeComponent();
         }

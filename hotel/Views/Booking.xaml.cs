@@ -18,7 +18,7 @@ namespace hotel.Views
     /// <summary>
     /// Логика взаимодействия для Booking.xaml
     /// </summary>
-    public partial class Booking : Page
+    public partial class Booking : UserControl
     {
         public Booking()
         {

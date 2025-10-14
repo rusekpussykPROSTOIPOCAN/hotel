@@ -20,14 +20,11 @@ namespace hotel.Common.Base
         {
             InitializeComponent();
         }
-        public void ShowContent(object conn)
+       
+        public static readonly DependencyProperty dependency = DependencyProperty.Register("UserControl", typeof(UserControl), typeof(DashBoasrdForAdmin), new PropertyMetadata(null));
+        public UserControl UserControl
         {
-            userControl = conn;
-        } 
-        public static readonly DependencyProperty dependency = DependencyProperty.Register("userControl", typeof(object), typeof(DashBoasrdForAdmin), new PropertyMetadata(null));
-        public object userControl
-        {
-            get => GetValue(dependency);
+            get => (UserControl)GetValue(dependency);
             set => SetValue(dependency, value);
         }
        
