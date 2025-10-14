@@ -17,7 +17,7 @@ namespace hotel.Views.Admin
     /// <summary>
     /// Логика взаимодействия для Sells.xaml
     /// </summary>
-    public partial class Sells : Window
+    public partial class Sells : UserControl
     {
         public Sells()
         {

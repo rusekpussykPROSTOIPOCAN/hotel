@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using hotel.Views;
 using hotel.Views.Admin;
+using hotel.Views.Staff;
 
 
 namespace hotel.ViewModels.Admin
@@ -23,6 +24,22 @@ namespace hotel.ViewModels.Admin
         private void ShowSecond() {
 
             CurrentPage = new GuestsBoard();
+        }
+        [RelayCommand]
+        private void ShowThird() {
+            CurrentPage = new Nums();
+        }
+        [RelayCommand]
+        private void ShowFourth() { 
+            CurrentPage = new Sells();
+        }
+        [RelayCommand]
+        private void ShowFiveth() {
+            CurrentPage = new Schedule();
+        }
+        [RelayCommand]
+        private void ShowSixth() {
+            CurrentPage = new Tasks();
         }
 
     }

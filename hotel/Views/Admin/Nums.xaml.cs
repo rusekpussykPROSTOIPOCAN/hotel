@@ -17,7 +17,7 @@ namespace hotel.Views.Admin
     /// <summary>
     /// Логика взаимодействия для Nums.xaml
     /// </summary>
-    public partial class Nums : Window
+    public partial class Nums : UserControl
     {
         public Nums()
         {

@@ -17,7 +17,7 @@ namespace hotel.Views
     /// <summary>
     /// Логика взаимодействия для Schedule.xaml
     /// </summary>
-    public partial class Schedule : Window
+    public partial class Schedule : UserControl
     {
         public Schedule()
         {

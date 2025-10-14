@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace hotel.Views.Staff
+namespace hotel.Views.Admin.NumsAct
 {
     /// <summary>
-    /// Логика взаимодействия для Tasks.xaml
+    /// Логика взаимодействия для CheckIn.xaml
     /// </summary>
-    public partial class Tasks : UserControl
+    public partial class CheckIn : Window
     {
-        public Tasks()
+        public CheckIn()
         {
             InitializeComponent();
         }

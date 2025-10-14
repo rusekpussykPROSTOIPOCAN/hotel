@@ -1,12 +1,35 @@
-﻿<Window x:Class="hotel.Views.Admin.Nums"
+﻿<UserControl x:Class="hotel.Views.Admin.Nums"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hotel.Views.Admin"
         mc:Ignorable="d"
-        Title="Nums" Height="450" Width="800">
+             xmlns:vm="clr-namespace:hotel.ViewModels.Admin"
+        xmlns:con="clr-namespace:hotel.Common.Base"
+        xmlns:btn="clr-namespace:hotel.Common.Base"
+        Height="350" Width="600">
+    <UserControl.DataContext>
+        <vm:NumsViewModel/>
+    </UserControl.DataContext>
     <Grid>
-        
+            <DataGrid  IsReadOnly="{Binding IsReadOnly}" x:Name="NumsTable" Grid.Row="0" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn />
+                <DataGridTextColumn />
+                <DataGridTextColumn />
+                <DataGridTextColumn />
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1">
+            <btn:Btn Placeholder="{StaticResource checkinstring}" Command="{Binding checkinCommand}"/>
+            <btn:Btn Placeholder="{StaticResource checkoutstring}" Command="{Binding checkoutCommand}"/>
+            <btn:Btn Placeholder="{StaticResource editguest}" Wigth="150" Command="{Binding editCommand}"  />
+        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
     </Grid>
-</Window>
+</UserControl> 

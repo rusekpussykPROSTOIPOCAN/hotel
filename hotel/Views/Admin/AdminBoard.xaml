@@ -26,13 +26,13 @@ xmlns:textbox="clr-namespace:hotel.Common.Base"
 
         <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2" >
 
-            <btn:Btn   Placeholder="{StaticResource  bookingtext}" Command="{Binding ShowFirstCommand}"  Wigth="105"/>
-            <btn:Btn  Placeholder="{StaticResource gueststext}"   Command="{Binding ShowSecondCommand}" Wigth="105"/>
-            <btn:Btn  Placeholder="{StaticResource numstext}"   Wigth="120"/>
-            <btn:Btn  Placeholder="{StaticResource scheduletext}"   Wigth="120"/>
+            <btn:Btn   Placeholder="{StaticResource  bookingtext}" Command="{Binding ShowFirstCommand}"  Wigth="110"/>
+            <btn:Btn  Placeholder="{StaticResource gueststext}"   Command="{Binding ShowSecondCommand}" Wigth="110"/>
+            <btn:Btn  Placeholder="{StaticResource numstext}"  Command="{Binding ShowThirdCommand}" Wigth="120"/>
+            <btn:Btn  Placeholder="{StaticResource scheduletext}" Command="{Binding ShowFivethCommand}"  Wigth="120"/>
 
-            <btn:Btn  Placeholder="{StaticResource taskstext}"  Wigth="120"/>
-            <btn:Btn  Placeholder="{StaticResource selltext}"   Wigth="120"/>
+            <btn:Btn  Placeholder="{StaticResource taskstext}" Command="{Binding ShowSixthCommand}"  Wigth="120"/>
+            <btn:Btn  Placeholder="{StaticResource selltext}"  Command="{Binding ShowFourthCommand}"   Wigth="120"/>
         </StackPanel>
         <con:DashBoasrdForAdmin Grid.Row="1" UserControl="{Binding CurrentPage}" Grid.ColumnSpan="2"/>
     </Grid>
