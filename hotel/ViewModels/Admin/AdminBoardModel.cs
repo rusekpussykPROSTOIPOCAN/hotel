@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using hotel.Views.Admin;
+
 
 namespace hotel.ViewModels.Admin
 {
-    internal class AdminBoardModel
+    public partial class AdminBoardModel:ObservableObject
     {
+        [ObservableProperty]
+        private object _currentPage;
+        [RelayCommand]
+        private void ShowFirst()
+        {
+            CurrentPage = new AdminBoard();
+        }
     }
 }

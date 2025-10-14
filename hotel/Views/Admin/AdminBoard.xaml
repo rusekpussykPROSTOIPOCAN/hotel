@@ -5,9 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hotel.Views.Admin"
         mc:Ignorable="d"
+         xmlns:usercontr="clr-namespace:hotel.Common.Base"
             xmlns:btn="clr-namespace:hotel.Common.Base"
 xmlns:textbox="clr-namespace:hotel.Common.Base"
+        xmlns:vm="clr-namespace:hotel.ViewModels.Admin"
         Title="AdminBoard" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:AdminBoardModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
@@ -16,7 +21,7 @@ xmlns:textbox="clr-namespace:hotel.Common.Base"
         
     <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal">
 
-        <btn:Btn Placeholder="{StaticResource  bookingtext}"  Wigth="105"/>
+        <btn:Btn   Placeholder="{StaticResource  bookingtext}" command="{Binding ShowFirstCommand}"  Wigth="105"/>
         <btn:Btn  Placeholder="{StaticResource gueststext}"   Wigth="105"/>
         <btn:Btn  Placeholder="{StaticResource numstext}"   Wigth="120"/>
         <btn:Btn  Placeholder="{StaticResource scheduletext}"   Wigth="120"/>
@@ -24,10 +29,6 @@ xmlns:textbox="clr-namespace:hotel.Common.Base"
         <btn:Btn  Placeholder="{StaticResource taskstext}"  Wigth="120"/>
         <btn:Btn  Placeholder="{StaticResource selltext}"   Wigth="120"/>
     </StackPanel>
-        <ContentControl Grid.Row="1">
-            <ContentControl.Resources>
-               
-            </ContentControl.Resources>
-        </ContentControl>
+        
     </Grid>
 </Window>

@@ -40,9 +40,18 @@ namespace hotel.Common.Base
                 Myb.Width = double.Parse(wigth);
             }
         }
-
-        
-
+        public static readonly DependencyProperty property = DependencyProperty.Register(nameof(command),typeof(ICommand),typeof(Btn), new PropertyMetadata(null));
+        public ICommand command
+        {
+            get => (ICommand)GetValue(property);
+            set => SetValue(property, value);
+        }
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+            base.OnMouseLeftButtonDown(e);
+            
+        }
+      
         public Btn()
         {
             InitializeComponent();
