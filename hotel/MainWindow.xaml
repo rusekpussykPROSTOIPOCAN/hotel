@@ -7,7 +7,11 @@
         mc:Ignorable="d"
              xmlns:btn="clr-namespace:hotel.Common.Base"
          xmlns:textbox="clr-namespace:hotel.Common.Base"
+        xmlns:vm="clr-namespace:hotel.ViewModels"
            Title="" Height="450" Width="400">
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
     
     <Grid>
         <Grid.ColumnDefinitions>
@@ -26,7 +30,7 @@
         <textbox:LabelMy Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Placeholder="{StaticResource Log}"/>
         <textbox:LabelMy Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Placeholder="{StaticResource Pass}"/>
 
-        <btn:Btn  Grid.Row="3" Grid.ColumnSpan="3"  Placeholder="{StaticResource entry}" Click="Button_Click" Wigth="300" Margin="50,3,50,-4"/>
+        <btn:Btn  Grid.Row="3" Grid.ColumnSpan="3"  Placeholder="{StaticResource entry}" Wigth="300" Margin="50,3,50,-4"/>
 
 
 

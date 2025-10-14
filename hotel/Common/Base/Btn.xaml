@@ -19,6 +19,6 @@
         </Style>
     </UserControl.Resources>
 
-    <Button x:Name="Myb" Content="{Binding Placeholder}" Click="Myb_Click" Width="100" Height="30"/>
+    <Button x:Name="Myb" Content="{Binding Placeholder}" Width="100" Height="30"/>
 
 </UserControl>

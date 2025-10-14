@@ -41,20 +41,12 @@ namespace hotel.Common.Base
             }
         }
 
-        public static readonly RoutedEvent routed = EventManager.RegisterRoutedEvent("Click", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(Btn));
-        public event RoutedEventHandler Click
-        {
-            add { AddHandler(routed, value); }
-            remove { RemoveHandler(routed, value); }
-        }
+        
 
         public Btn()
         {
             InitializeComponent();
         }
-        private void Myb_Click(object sender, RoutedEventArgs e)
-        {
-            RaiseEvent(new RoutedEventArgs(routed));
-        }
+        
     }
 }

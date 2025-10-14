@@ -16,19 +16,17 @@ xmlns:textbox="clr-namespace:hotel.Common.Base"
         
     <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal">
 
-        <btn:Btn Placeholder="{StaticResource  bookingtext}" Click="MyBtn_Click" Wigth="105"/>
-        <btn:Btn  Placeholder="{StaticResource gueststext}" Click="MyBtn_Click_1"  Wigth="105"/>
-        <btn:Btn  Placeholder="{StaticResource numstext}" Click="MyBtn_Click_2"  Wigth="120"/>
-        <btn:Btn  Placeholder="{StaticResource scheduletext}" Click="MyBtn_Click_3"  Wigth="120"/>
+        <btn:Btn Placeholder="{StaticResource  bookingtext}"  Wigth="105"/>
+        <btn:Btn  Placeholder="{StaticResource gueststext}"   Wigth="105"/>
+        <btn:Btn  Placeholder="{StaticResource numstext}"   Wigth="120"/>
+        <btn:Btn  Placeholder="{StaticResource scheduletext}"   Wigth="120"/>
 
-        <btn:Btn  Placeholder="{StaticResource taskstext}" Click="MyBtn_Click_4"  Wigth="120"/>
-        <btn:Btn  Placeholder="{StaticResource selltext}" Click="MyBtn_Click_5"  Wigth="120"/>
+        <btn:Btn  Placeholder="{StaticResource taskstext}"  Wigth="120"/>
+        <btn:Btn  Placeholder="{StaticResource selltext}"   Wigth="120"/>
     </StackPanel>
         <ContentControl Grid.Row="1">
             <ContentControl.Resources>
-                <DataTemplate>
-                    <!-- страничка -->
-                </DataTemplate>
+               
             </ContentControl.Resources>
         </ContentControl>
     </Grid>
