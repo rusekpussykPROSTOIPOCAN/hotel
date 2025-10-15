@@ -15,9 +15,11 @@
     <s:String x:Key="editguesttext">Редактировать заселение</s:String>
     <s:String x:Key="checkinstring">Заселить гостя</s:String>
     <s:String x:Key="deleteguesttext">Выселить гостя</s:String>
-        <s:String x:Key="createtasktext">Создать задание</s:String>
-        <s:String x:Key="deletetasktext">Удалить задание</s:String>
-        <s:String x:Key="edittasktext">Редактировать задание</s:String>
+
+    <s:String x:Key="createtasktext">Создать задание</s:String>
+    <s:String x:Key="deletetasktext">Удалить задание</s:String>
+    <s:String x:Key="edittasktext">Редактировать задание</s:String>
+
     <s:String x:Key="searchstring">Найти</s:String>
     <s:String x:Key="checkoutstring">Выселить</s:String>
     <s:String x:Key="editguest">Редактировать данные</s:String>
@@ -35,4 +37,12 @@
     <s:String x:Key="MName">Отчество</s:String>
     <s:String x:Key="SeriaandNum">Серия и номер паспорта</s:String>
     <s:String x:Key="DateBith">Дата рождения</s:String>
+
+    <s:String x:Key="DateCheckIn">Дата заселения</s:String>
+    <s:String x:Key="DateCheckOut">Фамилия</s:String>
+    <s:String x:Key="Num">Номер</s:String>
+    <s:String x:Key="NumType">Тип Номера</s:String>
+    <s:String x:Key="Guest">Гость</s:String>
+    <s:String x:Key="PriceNigth">Цена за ночь</s:String>
+
 </ResourceDictionary>
