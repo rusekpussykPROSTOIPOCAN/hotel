@@ -42,6 +42,22 @@ namespace hotel.Common.Base
             get => (double)GetValue(wight);
             set => SetValue(wight, value);
         }
+        public static readonly DependencyProperty heig = DependencyProperty.
+           Register("Heig", typeof(double), typeof(Btn),
+           new PropertyMetadata(30.0));
+        public double Heig
+        {
+            get => (double)GetValue(heig);
+            set => SetValue(heig, value);
+        }
+
+        public static readonly DependencyProperty marginSet = DependencyProperty.Register("MarginSet", typeof(Thickness), typeof(Btn), new PropertyMetadata(new Thickness(5)));
+        public Thickness MarginSet
+        {
+            get => (Thickness)GetValue(marginSet);
+            set => SetValue(marginSet, value);
+        }
+
         public static readonly DependencyProperty param = DependencyProperty.
             Register("Params", typeof(object), typeof(Btn),
             new PropertyMetadata(null));

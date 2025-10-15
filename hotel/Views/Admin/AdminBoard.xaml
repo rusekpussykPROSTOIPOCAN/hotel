@@ -10,28 +10,26 @@
             xmlns:btn="clr-namespace:hotel.Common.Base"
 xmlns:textbox="clr-namespace:hotel.Common.Base"
         xmlns:vm="clr-namespace:hotel.ViewModels.Admin"
-        Title="AdminBoard" Height="600" Width="800">
+        Title="AdminBoard" Height="500" Width="800">
     <Window.DataContext>
         <vm:AdminBoardModel/>
     </Window.DataContext>
+    
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="4*"/>
-        </Grid.ColumnDefinitions>
+       
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2" >
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Grid.ColumnSpan="2" >
 
-            <btn:Btn   Placeholder="{StaticResource  bookingtext}" Command="{Binding ShowFirstCommand}"  Wigth="110"/>
+            <btn:Btn MarginSet="5"  Placeholder="{StaticResource  bookingtext}" Command="{Binding ShowFirstCommand}"  Wigth="110"/>
             <btn:Btn  Placeholder="{StaticResource gueststext}"   Command="{Binding ShowSecondCommand}" Wigth="110"/>
             <btn:Btn  Placeholder="{StaticResource numstext}"  Command="{Binding ShowThirdCommand}" Wigth="120"/>
-            <btn:Btn  Placeholder="{StaticResource scheduletext}" Command="{Binding ShowFivethCommand}"  Wigth="120"/>
+            <btn:Btn   Placeholder="{StaticResource scheduletext}" Command="{Binding ShowFivethCommand}"  Wigth="120"/>
 
-            <btn:Btn  Placeholder="{StaticResource taskstext}" Command="{Binding ShowSixthCommand}"  Wigth="120"/>
+            <btn:Btn   Placeholder="{StaticResource taskstext}" Command="{Binding ShowSixthCommand}"  Wigth="120"/>
             <btn:Btn  Placeholder="{StaticResource selltext}"  Command="{Binding ShowFourthCommand}"   Wigth="120"/>
         </StackPanel>
         <con:DashBoasrdForAdmin Grid.Row="1" UserControl="{Binding CurrentPage}" Grid.ColumnSpan="2"/>

@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace hotel.Views.Admin.NumsAct
+namespace hotel.Views.Admin.GuestAct
 {
     /// <summary>
-    /// Логика взаимодействия для CheckOut.xaml
+    /// Логика взаимодействия для AddGuestPage.xaml
     /// </summary>
-    public partial class CheckOut : UserControl
+    public partial class AddGuestPage : Window
     {
-        public CheckOut()
+        public AddGuestPage()
         {
             InitializeComponent();
         }

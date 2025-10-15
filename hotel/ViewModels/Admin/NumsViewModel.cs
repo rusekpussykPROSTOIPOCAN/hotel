@@ -47,18 +47,19 @@ namespace hotel.ViewModels.Admin
         [RelayCommand]
         public void checkout()
         {
-            Currentpage = new CheckOut();
-            IsVis = Togle(IsVis);
+            IsReadOnly = !IsReadOnly;
+            IsVis = "Visibly";
             IsVischeckin = Togle(IsVischeckin);
             IsVisEdit = Togle(IsVisEdit);
         }
         [RelayCommand]
         public void edit()
         {
-            IsReadOnly = !IsReadOnly;
-            IsVis = "Visibly";
+            Currentpage = new EditNums();
+            IsVis = Togle(IsVis);
             IsVischeckin = Togle(IsVischeckin);
             IsVischeckout = Togle(IsVischeckout);
+            
         }
     }
 }

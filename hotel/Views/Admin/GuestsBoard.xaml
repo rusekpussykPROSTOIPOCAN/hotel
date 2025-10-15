@@ -6,18 +6,16 @@
         xmlns:local="clr-namespace:hotel.Views.Admin"
         mc:Ignorable="d"
         xmlns:btn="clr-namespace:hotel.Common.Base"
-        xmlns:textbox="clr-namespace:hotel.Common.Base"
+        xmlns:vm ="clr-namespace:hotel.ViewModels.Admin"
          Height="350" Width="600">
+    <UserControl.DataContext>
+        <vm:GuestsViewModel/>
+    </UserControl.DataContext>
     <Grid>
-        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row ="3">
-            <btn:Btn  Placeholder="{StaticResource deleteguesttext}" />
-            <btn:Btn   Placeholder="{StaticResource editguesttext}"  />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Left">
-            <TextBox Margin="5" x:Name="searchbox" Height="20" Width="530"/>
-            <btn:Btn x:Name="searchbut"  Placeholder="{StaticResource searchstring}" Width="55" />
-        </StackPanel>
-        <DataGrid Grid.Row="1" AutoGenerateColumns="False">
+
+        <btn:MySearch Visib="{Binding IsVis}"  Grid.Row="0"/>
+        <btn:DashBoasrdForAdmin UserControl="{Binding Currentpage}" Grid.Row="1"/>
+        <DataGrid Grid.Row="1" AutoGenerateColumns="False" Visibility="{Binding IsVis}" IsReadOnly="{Binding IsReadOnly}">
             <DataGrid.Columns>
                 <DataGridTextColumn />
                 <DataGridTextColumn />
@@ -26,11 +24,16 @@
 
             </DataGrid.Columns>
         </DataGrid>
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="2">
+            <btn:Btn Placeholder="{StaticResource deleteguest}" Command="{Binding DeleteGuestCommand}"  Visibility="{Binding IsVisGuestDelete}"/>
+            <btn:Btn Placeholder="{StaticResource addguest}" Command="{Binding AddGuestCommand}" Visibility="{Binding IsVisGuestAdd}" Wigth="150"/>
+            <btn:Btn Placeholder="{StaticResource editguests}" Command="{Binding EditGuestCommand}" Visibility="{Binding IsVisGuestEdit}" Wigth="150"  />
+        </StackPanel>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="50"/>
+          
         </Grid.RowDefinitions>
     </Grid>
 </UserControl>

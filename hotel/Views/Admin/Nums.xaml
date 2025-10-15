@@ -5,16 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hotel.Views.Admin"
         mc:Ignorable="d"
+    
              xmlns:vm="clr-namespace:hotel.ViewModels.Admin"
-        xmlns:con="clr-namespace:hotel.Common.Base"
+   
         xmlns:btn="clr-namespace:hotel.Common.Base"
         Height="350" Width="600">
     <UserControl.DataContext>
         <vm:NumsViewModel/>
     </UserControl.DataContext>
     <Grid>
-        <con:DashBoasrdForAdmin Grid.Row="0" UserControl="{Binding Currentpage}"/>
-        <DataGrid Visibility="{Binding IsVis}" IsReadOnly="{Binding IsReadOnly}" x:Name="NumsTable" Grid.Row="0" AutoGenerateColumns="False">
+        <btn:MySearch Visib="{Binding IsVis}" />
+        <btn:DashBoasrdForAdmin Grid.Row="1" UserControl="{Binding Currentpage}"/>
+        <DataGrid Visibility="{Binding IsVis}" IsReadOnly="{Binding IsReadOnly}" x:Name="NumsTable" Grid.Row="1" AutoGenerateColumns="False">
                 
             <DataGrid.Columns>
                 <DataGridTextColumn />
@@ -24,12 +26,13 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1">
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="2">
             <btn:Btn Placeholder="{StaticResource checkinstring}" Command="{Binding checkinCommand}" Visib="{Binding IsVischeckin}"/>
             <btn:Btn Placeholder="{StaticResource checkoutstring}" Command="{Binding checkoutCommand}" Visib="{Binding IsVischeckout}"/>
             <btn:Btn Placeholder="{StaticResource editguest}" Wigth="150" Command="{Binding editCommand}" Visib="{Binding IsVisEdit}"/>
         </StackPanel>
         <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>

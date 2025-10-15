@@ -5,15 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hotel.Views.Admin"
         mc:Ignorable="d"
-                  xmlns:vm="clr-namespace:hotel.ViewModels.Admin"
-xmlns:con="clr-namespace:hotel.Common.Base"
-xmlns:btn="clr-namespace:hotel.Common.Base"
+        xmlns:vm="clr-namespace:hotel.ViewModels.Admin"
+        xmlns:btn="clr-namespace:hotel.Common.Base"
          Height="350" Width="600">
     <UserControl.DataContext>
-        <vm:NumsViewModel/>
+        <vm:SellsViewModel/>
     </UserControl.DataContext>
     <Grid>
-        <DataGrid IsReadOnly="{Binding IsReadOnly}" x:Name="NumsTable" Grid.Row="0" AutoGenerateColumns="False">
+        <btn:MySearch Grid.Row="0" Visib="{Binding IsVis}"/>
+        <btn:DashBoasrdForAdmin UserControl="{Binding Currentpage}" Grid.Row="1" />
+        <DataGrid Visibility="{Binding IsVis}" IsReadOnly="{Binding IsReadOnly}" x:Name="NumsTable" Grid.Row="1" AutoGenerateColumns="False">
 
             <DataGrid.Columns>
                 <DataGridTextColumn />
@@ -23,12 +24,13 @@ xmlns:btn="clr-namespace:hotel.Common.Base"
 
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1">
-            <btn:Btn Placeholder="{StaticResource addsell}"  Wigth="120"/>
-            <btn:Btn Placeholder="{StaticResource deletesell}"  Wigth="120"/>
-            <btn:Btn Placeholder="{StaticResource editsell}" Wigth="150"  />
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="2">
+            <btn:Btn Placeholder="{StaticResource addsell}"  Wigth="120" Command="{Binding addCommand}" Visib="{Binding IsVisAdd}"/>
+            <btn:Btn Placeholder="{StaticResource deletesell}"  Wigth="120" Command="{Binding deleteCommand}" Visib="{Binding IsVisDelete}"/>
+            <btn:Btn Placeholder="{StaticResource editsell}" Wigth="150" Command="{Binding editCommand}" Visib="{Binding IsVisEdit}"/>
         </StackPanel>
         <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
