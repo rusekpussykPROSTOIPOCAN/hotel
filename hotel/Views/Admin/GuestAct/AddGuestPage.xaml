@@ -1,12 +1,23 @@
-﻿<Window x:Class="hotel.Views.Admin.GuestAct.AddGuestPage"
+﻿<UserControl x:Class="hotel.Views.Admin.GuestAct.AddGuestPage"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hotel.Views.Admin.GuestAct"
+              xmlns:btn="clr-namespace:hotel.Common.Base"
         mc:Ignorable="d"
-        Title="AddGuestPage" Height="450" Width="800">
+         Height="350" Width="600">
     <Grid>
-        
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            
+        <StackPanel CanVerticallyScroll="True">
+                <btn:LabelMy Placeholder="{StaticResource Name}"  Margin="5"/>
+                <btn:LabelMy Placeholder="{StaticResource Fname}" Margin="5"/>
+                <btn:LabelMy Placeholder="{StaticResource MName}" Margin="5"/>
+                <btn:LabelMy Placeholder="{StaticResource DateBith}" Margin="5" />
+                <btn:LabelMy Placeholder="{StaticResource SeriaandNum}" Margin="5"/>
+         
+        </StackPanel >
+        </ScrollViewer>
     </Grid>
-</Window>
+</UserControl>

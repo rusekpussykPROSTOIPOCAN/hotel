@@ -5,18 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hotel.Views.Staff"
         mc:Ignorable="d"
-         Height="450" Width="800">
+             xmlns:btn="clr-namespace:hotel.Common.Base"
+             xmlns:vm="clr-namespace:hotel.ViewModels.Staff"
+         Height="350" Width="600">
+    <UserControl.DataContext>
+        <vm:TascksViewModel/>
+    </UserControl.DataContext>
     <Grid>
-        <DataGrid AutoGenerateColumns="False">
+        <btn:MySearch Visibility="{Binding IsVis}" Grid.Row="0"/>
+        <btn:DashBoasrdForAdmin UserControl="{Binding Currentpage}" Grid.Row="1"/>
+        <DataGrid Visibility="{Binding IsVis}" Grid.Row="1" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn />
                 <DataGridTextColumn />
                 <DataGridTextColumn />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <btn:Btn Placeholder="{StaticResource createtasktext}"  Wigth="120" Command="{Binding deleteCommand}" Params="{Binding}" />
+                                <btn:Btn Placeholder="{StaticResource edittasktext}" Wigth="150" Command="{Binding editCommand}" Params="{Binding}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <btn:Btn Grid.Row="2" Placeholder="{StaticResource createtasktext}" Command="{Binding createCommand}" />
+
         <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
     </Grid>
     <!--сделать появление кнопки для выдачи задания на уборку при статусе "грязно" и менять статус если кто-то взял задание на "в работе" смена статуса на "убрано", если таск отмечен выполненным-->

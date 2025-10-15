@@ -1,12 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using hotel.Views.Admin.NumsAct;
 
 namespace hotel.ViewModels
 {
-    internal class BookingViewModel
+    public partial class BookingViewModel : ObservableObject
     {
+        [RelayCommand]
+        public void checkin()
+        {
+
+        }
+        [RelayCommand]
+        public void delete(object param)
+        {
+
+        }
     }
 }

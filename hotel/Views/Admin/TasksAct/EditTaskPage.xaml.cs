@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace hotel.Views.Admin.GuestAct
+namespace hotel.Views.Admin.TasksAct
 {
     /// <summary>
-    /// Логика взаимодействия для AddGuestPage.xaml
+    /// Логика взаимодействия для EditTaskPage.xaml
     /// </summary>
-    public partial class AddGuestPage : UserControl
+    public partial class EditTaskPage : UserControl
     {
-        public AddGuestPage()
+        public EditTaskPage()
         {
             InitializeComponent();
         }

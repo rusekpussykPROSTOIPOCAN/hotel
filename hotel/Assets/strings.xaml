@@ -15,9 +15,9 @@
     <s:String x:Key="editguesttext">Редактировать заселение</s:String>
     <s:String x:Key="checkinstring">Заселить гостя</s:String>
     <s:String x:Key="deleteguesttext">Выселить гостя</s:String>
-    <s:String x:Key="createtasktext">Создать задание</s:String>
-    <s:String x:Key="deletetasktext">Удалить задание</s:String>
-    <s:String x:Key="edittasktext">Редактировать задание</s:String>
+        <s:String x:Key="createtasktext">Создать задание</s:String>
+        <s:String x:Key="deletetasktext">Удалить задание</s:String>
+        <s:String x:Key="edittasktext">Редактировать задание</s:String>
     <s:String x:Key="searchstring">Найти</s:String>
     <s:String x:Key="checkoutstring">Выселить</s:String>
     <s:String x:Key="editguest">Редактировать данные</s:String>
@@ -27,4 +27,12 @@
     <s:String x:Key="editguests">Редактировать гостя</s:String>
     <s:String x:Key="addguest">Зарегистрировать гостя</s:String>
     <s:String x:Key="deleteguest">Удалить гостя</s:String>
+    <s:String x:Key="deletebooking">Удалить бронь</s:String>
+    <s:String x:Key="acceptbooking">Подтвердить бронь</s:String>
+
+    <s:String x:Key="Name">Имя</s:String>
+    <s:String x:Key="Fname">Фамилия</s:String>
+    <s:String x:Key="MName">Отчество</s:String>
+    <s:String x:Key="SeriaandNum">Серия и номер паспорта</s:String>
+    <s:String x:Key="DateBith">Дата рождения</s:String>
 </ResourceDictionary>

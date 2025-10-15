@@ -21,13 +21,22 @@
                 <DataGridTextColumn />
                 <DataGridTextColumn />
                 <DataGridTextColumn />
-
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <btn:Btn Placeholder="{StaticResource editguests}" Command="{Binding EditGuestCommand}" Params="{Binding}" Wigth="150"  />
+                            <btn:Btn Placeholder="{StaticResource deleteguest}" Command="{Binding DeleteGuestCommand}" Params="{Binding}"  Wigth="100"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="2">
-            <btn:Btn Placeholder="{StaticResource deleteguest}" Command="{Binding DeleteGuestCommand}"  Visibility="{Binding IsVisGuestDelete}"/>
             <btn:Btn Placeholder="{StaticResource addguest}" Command="{Binding AddGuestCommand}" Visibility="{Binding IsVisGuestAdd}" Wigth="150"/>
-            <btn:Btn Placeholder="{StaticResource editguests}" Command="{Binding EditGuestCommand}" Visibility="{Binding IsVisGuestEdit}" Wigth="150"  />
+           
+          
         </StackPanel>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>

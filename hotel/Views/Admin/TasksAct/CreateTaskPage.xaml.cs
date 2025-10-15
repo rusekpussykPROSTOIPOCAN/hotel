@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace hotel.Views.Admin.GuestAct
+namespace hotel.Views.Admin.TasksAct
 {
     /// <summary>
-    /// Логика взаимодействия для AddGuestPage.xaml
+    /// Логика взаимодействия для CreateTaskPage.xaml
     /// </summary>
-    public partial class AddGuestPage : UserControl
+    public partial class CreateTaskPage : UserControl
     {
-        public AddGuestPage()
+        public CreateTaskPage()
         {
             InitializeComponent();
         }

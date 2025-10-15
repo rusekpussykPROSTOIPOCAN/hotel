@@ -20,10 +20,8 @@ namespace hotel.ViewModels.Admin
         private string _isVis = "Visibly";
         [ObservableProperty]
         private string _isVischeckin = "Visibly";
-        [ObservableProperty]
-        private string _isVischeckout = "Visibly";
-        [ObservableProperty]
-        private string _isVisEdit = "Visibly";
+        
+        
 
         public string Togle(  string  a )
         {
@@ -40,25 +38,22 @@ namespace hotel.ViewModels.Admin
         {
             Currentpage = new CheckIn();
             IsVis = Togle(IsVis);
-            IsVischeckout = Togle(IsVischeckout);
-            IsVisEdit = Togle(IsVisEdit);
+           
+           
             
         }
         [RelayCommand]
-        public void checkout()
+        public void checkout(object param)
         {
-            IsReadOnly = !IsReadOnly;
-            IsVis = "Visibly";
-            IsVischeckin = Togle(IsVischeckin);
-            IsVisEdit = Togle(IsVisEdit);
+           
         }
         [RelayCommand]
-        public void edit()
+        public void edit(object param)
         {
             Currentpage = new EditNums();
             IsVis = Togle(IsVis);
             IsVischeckin = Togle(IsVischeckin);
-            IsVischeckout = Togle(IsVischeckout);
+           
             
         }
     }

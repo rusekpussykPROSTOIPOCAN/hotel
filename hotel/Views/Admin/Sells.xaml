@@ -21,13 +21,21 @@
                 <DataGridTextColumn />
                 <DataGridTextColumn />
                 <DataGridTextColumn />
-
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <btn:Btn Placeholder="{StaticResource deletesell}"  Wigth="120" Command="{Binding deleteCommand}" Params="{Binding}" />
+                                <btn:Btn Placeholder="{StaticResource editsell}" Wigth="150" Command="{Binding editCommand}" Params="{Binding}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="2">
             <btn:Btn Placeholder="{StaticResource addsell}"  Wigth="120" Command="{Binding addCommand}" Visib="{Binding IsVisAdd}"/>
-            <btn:Btn Placeholder="{StaticResource deletesell}"  Wigth="120" Command="{Binding deleteCommand}" Visib="{Binding IsVisDelete}"/>
-            <btn:Btn Placeholder="{StaticResource editsell}" Wigth="150" Command="{Binding editCommand}" Visib="{Binding IsVisEdit}"/>
+            
         </StackPanel>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
