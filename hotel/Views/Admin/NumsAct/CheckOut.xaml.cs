@@ -17,7 +17,7 @@ namespace hotel.Views.Admin.NumsAct
     /// <summary>
     /// Логика взаимодействия для CheckOut.xaml
     /// </summary>
-    public partial class CheckOut : Window
+    public partial class CheckOut : UserControl
     {
         public CheckOut()
         {

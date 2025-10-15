@@ -21,4 +21,7 @@
     <s:String x:Key="searchstring">Найти</s:String>
     <s:String x:Key="checkoutstring">Выселить</s:String>
     <s:String x:Key="editguest">Редактировать данные</s:String>
+    <s:String x:Key="editsell">Редактировать продажи</s:String>
+    <s:String x:Key="addsell">Добавить продажу</s:String>
+    <s:String x:Key="deletesell">Удалить продажу</s:String>
 </ResourceDictionary>

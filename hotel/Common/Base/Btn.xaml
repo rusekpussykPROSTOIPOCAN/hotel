@@ -17,6 +17,7 @@
     </UserControl.Resources>
 
     <Button Command="{Binding Command, ElementName=Myb}" 
+            Visibility="{Binding Visib,ElementName=Myb}"
             Content="{Binding Placeholder, ElementName=Myb}" 
             CommandParameter="{Binding Params, ElementName=Myb}"
             Width="{Binding Wigth, ElementName=Myb}" Height="30"/>

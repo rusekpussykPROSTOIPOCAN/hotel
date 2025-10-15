@@ -50,6 +50,12 @@ namespace hotel.Common.Base
             get => GetValue(param);
             set => SetValue(param, value);
         }
+        public static readonly DependencyProperty visib = DependencyProperty.Register("Visib", typeof(string), typeof(Btn), new PropertyMetadata(null));
+        public string Visib
+        {
+            get => (string)GetValue(visib);
+            set => SetValue(visib, value);
+        }
 
 
     }

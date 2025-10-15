@@ -5,8 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hotel.Views.Admin"
         mc:Ignorable="d"
+                  xmlns:vm="clr-namespace:hotel.ViewModels.Admin"
+xmlns:con="clr-namespace:hotel.Common.Base"
+xmlns:btn="clr-namespace:hotel.Common.Base"
          Height="350" Width="600">
+    <UserControl.DataContext>
+        <vm:NumsViewModel/>
+    </UserControl.DataContext>
     <Grid>
-        
+        <DataGrid IsReadOnly="{Binding IsReadOnly}" x:Name="NumsTable" Grid.Row="0" AutoGenerateColumns="False">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn />
+                <DataGridTextColumn />
+                <DataGridTextColumn />
+                <DataGridTextColumn />
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1">
+            <btn:Btn Placeholder="{StaticResource addsell}"  Wigth="120"/>
+            <btn:Btn Placeholder="{StaticResource deletesell}"  Wigth="120"/>
+            <btn:Btn Placeholder="{StaticResource editsell}" Wigth="150"  />
+        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
     </Grid>
 </UserControl>

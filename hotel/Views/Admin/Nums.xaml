@@ -13,7 +13,9 @@
         <vm:NumsViewModel/>
     </UserControl.DataContext>
     <Grid>
-            <DataGrid  IsReadOnly="{Binding IsReadOnly}" x:Name="NumsTable" Grid.Row="0" AutoGenerateColumns="False">
+        <con:DashBoasrdForAdmin Grid.Row="0" UserControl="{Binding Currentpage}"/>
+        <DataGrid Visibility="{Binding IsVis}" IsReadOnly="{Binding IsReadOnly}" x:Name="NumsTable" Grid.Row="0" AutoGenerateColumns="False">
+                
             <DataGrid.Columns>
                 <DataGridTextColumn />
                 <DataGridTextColumn />
@@ -23,9 +25,9 @@
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1">
-            <btn:Btn Placeholder="{StaticResource checkinstring}" Command="{Binding checkinCommand}"/>
-            <btn:Btn Placeholder="{StaticResource checkoutstring}" Command="{Binding checkoutCommand}"/>
-            <btn:Btn Placeholder="{StaticResource editguest}" Wigth="150" Command="{Binding editCommand}"  />
+            <btn:Btn Placeholder="{StaticResource checkinstring}" Command="{Binding checkinCommand}" Visib="{Binding IsVischeckin}"/>
+            <btn:Btn Placeholder="{StaticResource checkoutstring}" Command="{Binding checkoutCommand}" Visib="{Binding IsVischeckout}"/>
+            <btn:Btn Placeholder="{StaticResource editguest}" Wigth="150" Command="{Binding editCommand}" Visib="{Binding IsVisEdit}"/>
         </StackPanel>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
