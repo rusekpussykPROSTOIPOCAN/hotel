@@ -6,16 +6,19 @@
         xmlns:local="clr-namespace:hotel.Views.Admin.NumsAct"
         mc:Ignorable="d"
                xmlns:btn="clr-namespace:hotel.Common.Base"
-         Height="300" Width="600">
+         Height="Auto" Width="600">
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
 
             <StackPanel CanVerticallyScroll="True">
-                <btn:LabelMy Placeholder="{StaticResource Name}"  Margin="5"/>
-                <btn:LabelMy Placeholder="{StaticResource Fname}" Margin="5"/>
-                <btn:LabelMy Placeholder="{StaticResource MName}" Margin="5"/>
-                <btn:LabelMy Placeholder="{StaticResource DateBith}" Margin="5" />
-                <btn:LabelMy Placeholder="{StaticResource SeriaandNum}" Margin="5"/>
+                <DatePicker Text="{StaticResource DateCheckIn}" Margin="25,0,30,5"/>
+                <DatePicker Text="{StaticResource DateCheckOut}" Margin="25,0,30,0"/>
+                <btn:yCombobox  Wigth="545"  Margin="20,0,10,0"/>
+                <btn:yCombobox  Wigth="545"  Margin="20,0,10,0"/>
+                <btn:yCombobox  Wigth="545"  Margin="20,0,10,0"/>
+                <btn:yCombobox  Wigth="545"  Margin="20,0,10,0"/>
+                <btn:yCombobox  Wigth="545"  Margin="20,0,10,0"/>
+               
 
             </StackPanel >
         </ScrollViewer>

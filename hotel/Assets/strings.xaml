@@ -31,7 +31,11 @@
     <s:String x:Key="deleteguest">Удалить гостя</s:String>
     <s:String x:Key="deletebooking">Удалить бронь</s:String>
     <s:String x:Key="acceptbooking">Подтвердить бронь</s:String>
-
+    
+    <s:String x:Key="delete">Удалить</s:String>
+    <s:String x:Key="edit">Редактировать</s:String>
+    <s:String x:Key="create">Создать рассписание</s:String>
+    
     <s:String x:Key="Name">Имя</s:String>
     <s:String x:Key="Fname">Фамилия</s:String>
     <s:String x:Key="MName">Отчество</s:String>
@@ -39,10 +43,11 @@
     <s:String x:Key="DateBith">Дата рождения</s:String>
 
     <s:String x:Key="DateCheckIn">Дата заселения</s:String>
-    <s:String x:Key="DateCheckOut">Фамилия</s:String>
+    <s:String x:Key="DateCheckOut">Дата выселения</s:String>
     <s:String x:Key="Num">Номер</s:String>
     <s:String x:Key="NumType">Тип Номера</s:String>
     <s:String x:Key="Guest">Гость</s:String>
     <s:String x:Key="PriceNigth">Цена за ночь</s:String>
+    <s:String x:Key="CountBads">Количество кроватей</s:String>
 
 </ResourceDictionary>
