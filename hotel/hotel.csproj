@@ -10,8 +10,7 @@
 
   <ItemGroup>
     <Folder Include="Common\Enums\" />
-    <Folder Include="Models\" />
-    <Folder Include="Services\" />
+    <Folder Include="Database\" />
   </ItemGroup>
 
   <ItemGroup>
