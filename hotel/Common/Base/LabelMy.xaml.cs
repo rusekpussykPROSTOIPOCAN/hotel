@@ -1,49 +1,77 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace hotel.Common.Base
 {
-    /// <summary>
-    /// Логика взаимодействия для LabelMy.xaml
-    /// </summary>
     public partial class LabelMy : UserControl
     {
         public LabelMy()
         {
             InitializeComponent();
         }
-        private string placeholder;
+
+        // DependencyProperty для Text
+        public static readonly DependencyProperty TextProperty =
+            DependencyProperty.Register("Text", typeof(string), typeof(LabelMy),
+                new PropertyMetadata(string.Empty, OnTextPropertyChanged));
+
+        public string Text
+        {
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
+        }
+
+        private static void OnTextPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = (LabelMy)d;
+            control.UpdateTextBox();
+        }
+
+        private void UpdateTextBox()
+        {
+            if (txtMy.Text != Text)
+            {
+                txtMy.Text = Text;
+            }
+            UpdatePlaceholderVisibility();
+        }
+
+        // DependencyProperty для Placeholder
+        public static readonly DependencyProperty PlaceholderProperty =
+            DependencyProperty.Register("Placeholder", typeof(string), typeof(LabelMy),
+                new PropertyMetadata(string.Empty, OnPlaceholderPropertyChanged));
+
         public string Placeholder
         {
-            get { return placeholder; }
-            set
-            {
-                placeholder = value;
-                transtext.Text = placeholder;
-            }
+            get { return (string)GetValue(PlaceholderProperty); }
+            set { SetValue(PlaceholderProperty, value); }
         }
+
+        private static void OnPlaceholderPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = (LabelMy)d;
+            control.transtext.Text = e.NewValue?.ToString() ?? string.Empty;
+            control.UpdatePlaceholderVisibility();
+        }
+
         private void clearb_Click(object sender, RoutedEventArgs e)
         {
-            txtMy.Clear();
+            Text = string.Empty;
             txtMy.Focus();
         }
 
         private void txtMy_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (string.IsNullOrEmpty(txtMy.Text)) transtext.Visibility = Visibility.Visible;
-            else transtext.Visibility = Visibility.Hidden;
+            if (txtMy.Text != Text)
+            {
+                Text = txtMy.Text;
+            }
+            UpdatePlaceholderVisibility();
+        }
+
+        private void UpdatePlaceholderVisibility()
+        {
+            transtext.Visibility = string.IsNullOrEmpty(txtMy.Text) ? Visibility.Visible : Visibility.Hidden;
         }
     }
 }
