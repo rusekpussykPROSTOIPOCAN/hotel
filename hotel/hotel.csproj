@@ -9,7 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Common\Enums\" />
+    <Compile Remove="Common\Enums\**" />
+    <EmbeddedResource Remove="Common\Enums\**" />
+    <None Remove="Common\Enums\**" />
+    <Page Remove="Common\Enums\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Database\" />
   </ItemGroup>
 

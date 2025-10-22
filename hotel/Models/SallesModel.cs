@@ -16,5 +16,7 @@ namespace hotel.Models
         public virtual usersModel User { get; set; }
         public int id_uslugi { get; set; }
         public virtual UslugiModel Uslugi { get; set; }
+
+        public decimal Sale { get; set; }
     }
 }

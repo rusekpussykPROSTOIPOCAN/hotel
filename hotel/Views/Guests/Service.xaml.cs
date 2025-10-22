@@ -17,7 +17,7 @@ namespace hotel.Views.Guests
     /// <summary>
     /// Логика взаимодействия для Service.xaml
     /// </summary>
-    public partial class Service : Window
+    public partial class Service : UserControl
     {
         public Service()
         {

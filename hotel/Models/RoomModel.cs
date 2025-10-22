@@ -11,5 +11,7 @@ namespace hotel.Models
         public virtual RoomTypeModel RoomType { get; set; }
         public int num { get; set; }
         public int count_bad { get; set; }
+        public int id_status { get; set; } 
+        public virtual StatusRoomModel StatusRoom { get; set; }
     }
 }

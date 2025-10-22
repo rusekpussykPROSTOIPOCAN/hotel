@@ -17,11 +17,12 @@
         <btn:DashBoasrdForAdmin UserControl="{Binding Currentpage}" Grid.Row="1"/>
         <DataGrid Grid.Row="1" AutoGenerateColumns="False" Visibility="{Binding IsVis}" IsReadOnly="{Binding IsReadOnly}">
             <DataGrid.Columns>
-                <DataGridTextColumn />
-                <DataGridTextColumn />
-                <DataGridTextColumn />
-                <DataGridTextColumn />
-                <DataGridTemplateColumn>
+                <DataGridTextColumn Header="Описание задания"/>
+                <DataGridTextColumn Header="Время начала"/>
+                <DataGridTextColumn Header="Время окончания"/>
+                <DataGridTextColumn Header="Дата"/>
+                <DataGridTextColumn Header="Назначен"/>
+                <DataGridTemplateColumn Header="Действия">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">

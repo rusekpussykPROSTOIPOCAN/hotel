@@ -10,7 +10,7 @@ namespace hotel.Models
         public virtual Staff Staff { get; set; }
        public string discript { get; set; }
         public int status_task_id { get; set; }
-       
+       public virtual statustaskModel StatusTask { get; set; }
       
     }
 }

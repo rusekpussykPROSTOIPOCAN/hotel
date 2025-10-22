@@ -7,6 +7,24 @@
         mc:Ignorable="d"
         Title="StaffBoard" Height="450" Width="800">
     <Grid>
+       
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Grid.ColumnSpan="2" >
+
+                <btn:Btn MarginSet="5"  Placeholder="{StaticResource  bookingtext}" Command="{Binding ShowFirstCommand}"  Wigth="110"/>
+                <btn:Btn  Placeholder="{StaticResource gueststext}"   Command="{Binding ShowSecondCommand}" Wigth="110"/>
+                <btn:Btn  Placeholder="{StaticResource numstext}"  Command="{Binding ShowThirdCommand}" Wigth="120"/>
+                <btn:Btn   Placeholder="{StaticResource scheduletext}" Command="{Binding ShowFivethCommand}"  Wigth="120"/>
+
+                <btn:Btn   Placeholder="{StaticResource taskstext}" Command="{Binding ShowSixthCommand}"  Wigth="120"/>
+                <btn:Btn  Placeholder="{StaticResource selltext}"  Command="{Binding ShowFourthCommand}"   Wigth="120"/>
+            </StackPanel>
+            <con:DashBoasrdForAdmin Grid.Row="1" UserControl="{Binding CurrentPage}" Grid.ColumnSpan="2"/>
         
     </Grid>
 </Window>

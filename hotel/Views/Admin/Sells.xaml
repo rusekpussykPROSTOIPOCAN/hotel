@@ -17,11 +17,12 @@
         <DataGrid Visibility="{Binding IsVis}" IsReadOnly="{Binding IsReadOnly}" x:Name="NumsTable" Grid.Row="1" AutoGenerateColumns="False">
 
             <DataGrid.Columns>
-                <DataGridTextColumn />
-                <DataGridTextColumn />
-                <DataGridTextColumn />
-                <DataGridTextColumn />
-                <DataGridTemplateColumn>
+                <DataGridTextColumn Header="Дата продажи"/>
+                <DataGridTextColumn Header="Оформил продажу"/>
+                <DataGridTextColumn Header="Гость"/>
+                <DataGridTextColumn Header="Услуга"/>
+                <DataGridTextColumn Header="Стоимость"/>
+                <DataGridTemplateColumn Header="Действя">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">

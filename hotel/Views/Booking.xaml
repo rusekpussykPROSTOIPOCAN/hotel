@@ -14,10 +14,10 @@
         <DataGrid Grid.Row="1" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Дата Бронирования" />
-                <DataGridTextColumn />
-                <DataGridTextColumn />
-                <DataGridTextColumn />
-                <DataGridTemplateColumn>
+                <DataGridTextColumn Header="Номер комнаты"/>
+                <DataGridTextColumn Header="Гость"/>
+                <DataGridTextColumn Header="Статус" />
+                <DataGridTemplateColumn Header="Действия">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
