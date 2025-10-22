@@ -13,7 +13,7 @@
         <btn:MySearch  Grid.Row="0"/>
         <DataGrid Grid.Row="1" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn />
+                <DataGridTextColumn Header="Дата Бронирования" />
                 <DataGridTextColumn />
                 <DataGridTextColumn />
                 <DataGridTextColumn />

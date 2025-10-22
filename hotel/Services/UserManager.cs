@@ -30,11 +30,10 @@ namespace hotel.Services
                 if (user != null)
                 {
                     string rolepass = GetRolePass(user.Role.Role);
-                    if (rolepass != null)
-                    {
+                    Console.WriteLine(rolepass);
                         user.roleconn = $"{baseConn}uid={user.Role.Role};pwd={rolepass};";
-                    }
-                    return user;
+                        return user;
+                    
                 }
                 return null;
             }

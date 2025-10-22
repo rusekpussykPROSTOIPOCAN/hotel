@@ -1,12 +1,7 @@
 ﻿using hotel.Models;
 using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace hotel.Services
 {
@@ -14,7 +9,11 @@ namespace hotel.Services
     {
         private usersModel users;
         private UserManager userManager;
- 
+        public static DataBaseService Instance { get; } = new DataBaseService();
+        public DataBaseService()
+        {
+          userManager = new UserManager();
+        }
         public bool Login (string username, string pass)
         {
             var user = userManager.Aut(username, pass);
@@ -26,14 +25,39 @@ namespace hotel.Services
             }
             return false;
         }
-        public DataBaseService()
-        {
-          userManager = new UserManager();
-        }
         public usersModel Currentuser => users;
+        public DataTable ExecuteQuery(string sql, Dictionary<string, object> parameters)
+        {
+            if (Currentuser == null || string.IsNullOrEmpty(Currentuser.roleconn))
+            {
+                throw new Exception("нет пользователя");
+            }
+            using (var conn = new MySqlConnection(Currentuser.roleconn))
+            {
+                conn.Open();
+                using (var cmd = new MySqlCommand(sql, conn))
+                {
+                    
+                    if (parameters != null)
+                    {
+                        foreach (var param in parameters)
+                        {
+                            cmd.Parameters.AddWithValue(param.Key, param.Value ?? DBNull.Value);
+                        }
+                    }
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        DataTable dataTable = new DataTable();
+                        dataTable.Load(reader);
+                        return dataTable;
+                    }
+                }
+            }
+        }
         public DataTable ExecuteQuery(string sql)
         {
-            if(users == null || string.IsNullOrEmpty(Currentuser.roleconn))
+            if(Currentuser == null || string.IsNullOrEmpty(Currentuser.roleconn))
             {
                 throw new Exception("нет пользователя");
             }

@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace hotel.Common.Base
 {
@@ -10,10 +11,13 @@ namespace hotel.Common.Base
             InitializeComponent();
         }
 
-        // DependencyProperty для Text
+     
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register("Text", typeof(string), typeof(LabelMy),
-                new PropertyMetadata(string.Empty, OnTextPropertyChanged));
+                new FrameworkPropertyMetadata(
+                    string.Empty,
+                    FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+                    OnTextPropertyChanged));
 
         public string Text
         {
@@ -36,7 +40,6 @@ namespace hotel.Common.Base
             UpdatePlaceholderVisibility();
         }
 
-        // DependencyProperty для Placeholder
         public static readonly DependencyProperty PlaceholderProperty =
             DependencyProperty.Register("Placeholder", typeof(string), typeof(LabelMy),
                 new PropertyMetadata(string.Empty, OnPlaceholderPropertyChanged));
@@ -65,6 +68,10 @@ namespace hotel.Common.Base
             if (txtMy.Text != Text)
             {
                 Text = txtMy.Text;
+
+               
+                var bindingExpression = GetBindingExpression(TextProperty);
+                bindingExpression?.UpdateSource();
             }
             UpdatePlaceholderVisibility();
         }

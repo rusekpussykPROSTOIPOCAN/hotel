@@ -7,11 +7,11 @@
              mc:Ignorable="d" 
              d:Height="40" d:Width="250">
     <Grid Margin="20,0,10,0" Background="White">
+        <TextBox  Text="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" BorderBrush="Transparent" x:Name="txtMy" 
+                 VerticalAlignment="Center" Margin="5,0,30,0" FontSize="16" FontWeight="Light" 
+                 Background="Transparent"  Height="40"/>
         <TextBlock x:Name="transtext" Panel.ZIndex="-1" FontSize="16" FontWeight="Light" 
                    VerticalAlignment="Center" Foreground="LightGray" Margin="10,0,30,0" />
-        <TextBox VerticalContentAlignment="Center" BorderBrush="Transparent" x:Name="txtMy" 
-                 VerticalAlignment="Center" Margin="5,0,30,0" FontSize="16" FontWeight="Light" 
-                 Background="Transparent" TextChanged="txtMy_TextChanged" Height="40"/>
         <Button Click="clearb_Click" x:Name="clearb" Height="40" Width="30" HorizontalAlignment="Right" 
                 Content="x" Foreground="LightGray" Background="Transparent" BorderBrush="Transparent"/>
     </Grid>

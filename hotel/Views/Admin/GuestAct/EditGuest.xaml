@@ -5,8 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hotel.Views.Admin.GuestAct"
         mc:Ignorable="d"
+        xmlns:btn="clr-namespace:hotel.Common.Base"
          Height="450" Width="800">
     <Grid>
-        
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+            <StackPanel CanVerticallyScroll="True">
+                <btn:LabelMy Placeholder="{StaticResource Name}" Text="{Binding Name, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <btn:LabelMy Placeholder="{StaticResource Fname}" Text="{Binding Lname, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <btn:LabelMy Placeholder="{StaticResource MName}" Text="{Binding Mname, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+               
+                <btn:LabelMy Placeholder="{StaticResource Log}" Text="{Binding Log, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+              
+
+                <DatePicker SelectedDate="{Binding Birthday, StringFormat=yyyy-MM-dd}" 
+          BorderBrush="Transparent" 
+          Margin="25,0,10,0"/>
+
+            </StackPanel >
+        </ScrollViewer>
     </Grid>
 </UserControl>

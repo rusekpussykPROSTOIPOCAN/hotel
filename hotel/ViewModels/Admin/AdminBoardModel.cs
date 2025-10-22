@@ -1,8 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using hotel.Services;
 using hotel.Views;
 using hotel.Views.Admin;
 using hotel.Views.Staff;
+using System.Data;
+using System.Windows;
 
 
 namespace hotel.ViewModels.Admin
@@ -11,10 +14,16 @@ namespace hotel.ViewModels.Admin
     {
         [ObservableProperty]
         private object _currentPage;
+
+       
+         
+        
         public AdminBoardModel()
         {
+          
             ShowFirst();
         }
+        
         [RelayCommand]
         private void ShowFirst()
         {
@@ -24,6 +33,8 @@ namespace hotel.ViewModels.Admin
         private void ShowSecond() {
 
             CurrentPage = new GuestsBoard();
+            GuestsViewModel viewModel = new GuestsViewModel();
+            viewModel.LoadGuest();
         }
         [RelayCommand]
         private void ShowThird() {

@@ -1,6 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using hotel.Models;
+using hotel.Services;
+using hotel.ViewModels.Admin.GuestActViewModel;
 using hotel.Views.Admin.GuestAct;
+using System.Collections.ObjectModel;
+using System.Data;
+using System.Windows;
 
 
 namespace hotel.ViewModels.Admin
@@ -11,13 +17,18 @@ namespace hotel.ViewModels.Admin
         private object _currentpage;
 
         [ObservableProperty]
+        private ObservableCollection<usersModel> _guest = new();
+
+
+
+        [ObservableProperty]
         private bool _isReadOnly = true;
 
         [ObservableProperty]
         private string _isVis = "Visibly";
         [ObservableProperty]
         private string _isVisGuestAdd = "Visibly";
-        
+
 
         public string Togle(string a)
         {
@@ -27,30 +38,113 @@ namespace hotel.ViewModels.Admin
         public GuestsViewModel()
         {
             Currentpage = null;
+            LoadGuest();
         }
 
+        public void LoadGuest()
+        {
+            Guest.Clear();
+
+            DataTable dataTable = DataBaseService.Instance.ExecuteQuery("SELECT id_guest, name, lname,mname,birthday,log from users left join roles on users.id_role=roles.id_role WHERE roles.role like 'guest'");
+            foreach (DataRow item in dataTable.Rows)
+            {
+                Guest.Add(new usersModel
+                {
+                    Id = Convert.ToInt32(item["id_guest"]),
+                    Name = item["name"].ToString(),
+                    Lname = item["lname"].ToString(),
+                    Mname = item["mname"].ToString(),
+                    Birthday = Convert.ToDateTime(item["birthday"]),
+                    log = item["log"].ToString()
+
+
+
+                });
+            }
+
+
+        }
+        private AddGuestViewModel addGuest;
+     
         [RelayCommand]
         public void AddGuest()
         {
-            Currentpage = new AddGuestPage();
-            IsVis = Togle(IsVis);
-           
+          
+            if (IsVis == "Visibly")
+            {
+                var addG = new AddGuestPage();
+                addGuest = addG.DataContext as AddGuestViewModel;
+                Currentpage = addG;
+                IsVis = Togle(IsVis);
+               
+
+            }
+            else
+            {
+                if(addGuest != null)
+                {
+                    if (addGuest.Isnull())
+                    {
+                        MessageBox.Show("Заполните поля");
+                        return;
+
+                    }
+                }
+                addGuest.AddUser();
+               
+                LoadGuest();
+                IsVis = Togle(IsVis);
+                Currentpage = null;
+                addGuest = null;
+              
+            }
 
         }
         [RelayCommand]
-        public void DeleteGuest(object param)
+        public void DeleteGuest(usersModel param)
         {
-            //Удаление
-           
+
+            DataBaseService.Instance.ExecuteQuery($"DELETE FROM users WHERE id_guest={param.Id}");
+            LoadGuest();
         }
+       
         [RelayCommand]
-        public void EditGuest(object param)
+        public void EditGuest(usersModel param)
         {
-            
-            Currentpage = new EditGuest();
-            IsVis = Togle(IsVis);
-            IsVisGuestAdd = Togle(IsVisGuestAdd);
-            
+            var editVm = new EditGuestViewModel();
+            if (IsVis == "Visibly")
+            {
+
+                 editVm = new EditGuestViewModel
+                {
+                    Name = param.Name,
+                    Lname = param.Lname,
+                    Mname = param.Mname,
+                    Birthday = param.Birthday,
+                    Log = param.log
+
+                };
+                
+                var editG = new EditGuest();
+                editG.DataContext = editVm;
+                Currentpage = editG;
+                IsVis = Togle(IsVis);
+
+
+            }
+            else
+            {
+
+
+                editVm.Update(param);
+                LoadGuest();
+                IsVis = Togle(IsVis);
+                Currentpage = null;
+                addGuest = null;
+
+            }
+
+
 
         }
     }

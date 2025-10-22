@@ -15,18 +15,20 @@
 
         <btn:MySearch Visib="{Binding IsVis}"  Grid.Row="0"/>
         <btn:DashBoasrdForAdmin UserControl="{Binding Currentpage}" Grid.Row="1"/>
-        <DataGrid Grid.Row="1" AutoGenerateColumns="False" Visibility="{Binding IsVis}" IsReadOnly="{Binding IsReadOnly}">
+        <DataGrid ItemsSource="{Binding Guest}" EnableColumnVirtualization="True" EnableRowVirtualization="True" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"   Grid.Row="1" AutoGenerateColumns="False" Visibility="{Binding IsVis}" IsReadOnly="{Binding IsReadOnly}">
             <DataGrid.Columns>
-                <DataGridTextColumn />
-                <DataGridTextColumn />
-                <DataGridTextColumn />
-                <DataGridTextColumn />
-                <DataGridTemplateColumn>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Lname}"/>
+                <DataGridTextColumn  Header="Отчество" Binding="{Binding Mname}"/>
+                <DataGridTextColumn   Header="Дата рождения" Binding="{Binding Birthday,StringFormat=\{0:d\}}"/>
+                <DataGridTemplateColumn  Header="Дейсвие">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <btn:Btn Placeholder="{StaticResource editguests}" Command="{Binding EditGuestCommand}" Params="{Binding}" Wigth="150"  />
-                            <btn:Btn Placeholder="{StaticResource deleteguest}" Command="{Binding DeleteGuestCommand}" Params="{Binding}"  Wigth="100"/>
+                                <btn:Btn Placeholder="{StaticResource editguests}" Command="{Binding DataContext.EditGuestCommand, 
+                  RelativeSource={RelativeSource AncestorType=DataGrid}}" Params="{Binding}" Wigth="150"  />
+                                <btn:Btn Placeholder="{StaticResource deleteguest}" Command="{Binding DataContext.DeleteGuestCommand, 
+                  RelativeSource={RelativeSource AncestorType=DataGrid}}" Params="{Binding}"  Wigth="100"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

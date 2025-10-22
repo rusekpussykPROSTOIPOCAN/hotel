@@ -1,10 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using hotel.Models;
+
 using hotel.Services;
 using hotel.Views.Admin;
-using hotel.Views.Staff;
-using hotel.Views.Guests;
+
 
 using System.Data;
 
@@ -14,7 +13,7 @@ namespace hotel.ViewModels
 {
     public partial class MainViewModel:ObservableObject
     {
-        private readonly DataBaseService _dataBaseService;
+      
        
         [ObservableProperty]
         private string _login="";
@@ -22,10 +21,12 @@ namespace hotel.ViewModels
         private string _password="";
         [ObservableProperty]
         private DataTable _dataTable;
+
+        public event Action? CloseAction;
         public MainViewModel()
         {
-            _dataBaseService = new DataBaseService();
-           
+
+
         }
         [RelayCommand]
         public void LoginT()
@@ -36,19 +37,28 @@ namespace hotel.ViewModels
                 MessageBox.Show("Введите данные");
                 return;
             }
-            bool suc = _dataBaseService.Login(Login,Password);
-            string role = _dataBaseService.Currentuser.Role?.Role ?? "хз";
+            bool suc = DataBaseService.Instance.Login(Login,Password);
+            string role = DataBaseService.Instance.Currentuser.Role?.Role ?? "хз";
+            if (suc) { 
+            
             NextPage(role);
+            }
+            else
+            {
+                MessageBox.Show($"{role}");
+            }
            
         }
         private void NextPage(string role)
         {
-            MainWindow main = new MainWindow();
+          
+                CloseAction?.Invoke();
             if (role == "admin")
             {
                 AdminBoard adminBoard = new AdminBoard();
+               
                 adminBoard.Show();
-                main.Close();
+                
             }
             else if (role == "staff")
             {
