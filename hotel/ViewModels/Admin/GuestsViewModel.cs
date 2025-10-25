@@ -27,6 +27,10 @@ namespace hotel.ViewModels.Admin
         [ObservableProperty]
         private string _isVis = "Visibly";
         [ObservableProperty]
+        private string _isVisBack = "Hidden";
+        [ObservableProperty]
+        private string _isVisEdit = "Hidden";
+        [ObservableProperty]
         private string _isVisGuestAdd = "Visibly";
 
 
@@ -69,17 +73,17 @@ namespace hotel.ViewModels.Admin
         [RelayCommand]
         public void AddGuest()
         {
-          
+
             if (IsVis == "Visibly")
             {
                 var addG = new AddGuestPage();
                 addGuest = addG.DataContext as AddGuestViewModel;
                 Currentpage = addG;
                 IsVis = Togle(IsVis);
-               
+                IsVisBack = Togle(IsVisBack);
 
             }
-            else
+            else 
             {
                 if(addGuest != null)
                 {
@@ -96,8 +100,11 @@ namespace hotel.ViewModels.Admin
                 IsVis = Togle(IsVis);
                 Currentpage = null;
                 addGuest = null;
-              
+                IsVisBack = Togle(IsVisBack);
+
             }
+           
+            
 
         }
         [RelayCommand]
@@ -108,16 +115,27 @@ namespace hotel.ViewModels.Admin
             LoadGuest();
         }
        
+            private EditGuestViewModel editVm;
+        [RelayCommand]
+        public void Back()
+        {
+            IsVis = Togle(IsVis);
+            Currentpage = null;
+            addGuest = null;
+            IsVisEdit = "Hidden";
+            IsVisGuestAdd = "Visible";
+            IsVisBack = Togle(IsVisBack);
+        }
         [RelayCommand]
         public void EditGuest(usersModel param)
         {
-            var editVm = new EditGuestViewModel();
             if (IsVis == "Visibly")
             {
 
                  editVm = new EditGuestViewModel
                 {
-                    Name = param.Name,
+                    Id  = param.Id,
+                     Name = param.Name,
                     Lname = param.Lname,
                     Mname = param.Mname,
                     Birthday = param.Birthday,
@@ -129,8 +147,9 @@ namespace hotel.ViewModels.Admin
                 editG.DataContext = editVm;
                 Currentpage = editG;
                 IsVis = Togle(IsVis);
-
-
+                IsVisEdit = Togle(IsVisEdit);
+                IsVisGuestAdd = Togle(IsVisGuestAdd);
+                IsVisBack = Togle(IsVisBack);
             }
             else
             {
@@ -140,7 +159,9 @@ namespace hotel.ViewModels.Admin
                 LoadGuest();
                 IsVis = Togle(IsVis);
                 Currentpage = null;
-                addGuest = null;
+                IsVisEdit = Togle(IsVisEdit);
+                IsVisGuestAdd = "Visible";
+                IsVisBack = Togle(IsVisBack);
 
             }
 

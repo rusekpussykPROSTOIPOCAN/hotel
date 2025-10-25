@@ -85,7 +85,7 @@ namespace hotel.ViewModels.Admin.GuestActViewModel
 
         private int GenerateGuestId()
         {
-            // Генерируем уникальный ID для гостя
+          
             var result = DataBaseService.Instance.ExecuteQuery("SELECT COALESCE(MAX(id_guest), 0) + 1 FROM users");
             return Convert.ToInt32(result.Rows[0][0]);
         }

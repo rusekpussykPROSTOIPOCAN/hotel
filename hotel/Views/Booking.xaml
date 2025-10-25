@@ -6,12 +6,15 @@
         xmlns:local="clr-namespace:hotel.Views.Admin"
         mc:Ignorable="d"
         xmlns:btn="clr-namespace:hotel.Common.Base"
-
+xmlns:vm ="clr-namespace:hotel.ViewModels"
          Height="350" Width="600">
+    <UserControl.DataContext>
+        <vm:BookingViewModel/>
+    </UserControl.DataContext>
     <Grid>
 
-        <btn:MySearch  Grid.Row="0"/>
-        <DataGrid Grid.Row="1" AutoGenerateColumns="False">
+        <btn:MySearch  Grid.Row="0" Visib="{Binding Vis2}"/>
+        <DataGrid Grid.Row="1" AutoGenerateColumns="False" Visibility="{Binding Vis2}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Дата Бронирования" />
                 <DataGridTextColumn Header="Номер комнаты"/>
@@ -29,9 +32,28 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <ScrollViewer Visibility="{Binding Vis1}" VerticalScrollBarVisibility="Auto">
+
+            <StackPanel CanVerticallyScroll="True">
+                <btn:LabelMy Placeholder="{StaticResource Name}" Text="{Binding Name, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <btn:LabelMy Placeholder="{StaticResource Fname}" Text="{Binding Lname, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <btn:LabelMy Placeholder="{StaticResource MName}" Text="{Binding Mname, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <btn:LabelMy Placeholder="{StaticResource SeriaandNum}" Text="{Binding Sernum, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <btn:LabelMy Placeholder="{StaticResource Log}" Text="{Binding Log, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <btn:LabelMy Placeholder="{StaticResource Pass}" Text="{Binding Pass, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <btn:LabelMy Placeholder="{StaticResource Pass}" Text="{Binding Pass, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <ComboBox Margin="25,0,15,0" Height="40"/>
+
+                <DatePicker SelectedDate="{Binding Birthday, StringFormat=yyyy-MM-dd}" 
+      BorderBrush="Transparent" 
+      Margin="25,5,10,5" />
+
+            </StackPanel >
+        </ScrollViewer>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        
     </Grid>
 </UserControl>

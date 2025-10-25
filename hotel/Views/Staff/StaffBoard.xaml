@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hotel.Views.Staff"
         mc:Ignorable="d"
+        xmlns:btn="clr-namespace:hotel.Common.Base"
         Title="StaffBoard" Height="450" Width="800">
     <Grid>
        
@@ -21,10 +22,9 @@
                 <btn:Btn  Placeholder="{StaticResource numstext}"  Command="{Binding ShowThirdCommand}" Wigth="120"/>
                 <btn:Btn   Placeholder="{StaticResource scheduletext}" Command="{Binding ShowFivethCommand}"  Wigth="120"/>
 
-                <btn:Btn   Placeholder="{StaticResource taskstext}" Command="{Binding ShowSixthCommand}"  Wigth="120"/>
-                <btn:Btn  Placeholder="{StaticResource selltext}"  Command="{Binding ShowFourthCommand}"   Wigth="120"/>
+                
             </StackPanel>
-            <con:DashBoasrdForAdmin Grid.Row="1" UserControl="{Binding CurrentPage}" Grid.ColumnSpan="2"/>
+            <btn:DashBoasrdForAdmin Grid.Row="1" UserControl="{Binding CurrentPage}" Grid.ColumnSpan="2"/>
         
     </Grid>
 </Window>

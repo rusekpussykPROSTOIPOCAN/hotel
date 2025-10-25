@@ -35,11 +35,15 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="2">
-            <btn:Btn Placeholder="{StaticResource addguest}" Command="{Binding AddGuestCommand}" Visibility="{Binding IsVisGuestAdd}" Wigth="150"/>
+        <btn:Btn Grid.Row="2"   Placeholder="{StaticResource addguest}" Command="{Binding AddGuestCommand}" Visibility="{Binding IsVisGuestAdd}" Wigth="150"/>
+        <btn:Btn  Grid.Row="2"  Placeholder="{StaticResource editguest}" Command="{Binding EditGuestCommand}" Visibility="{Binding IsVisEdit}" Wigth="150"/>
+        <StackPanel Grid.Row="2" Margin="0,0,350,0">
+            
+        <btn:Btn   Placeholder="{StaticResource back}" Command="{Binding BackCommand}" Visibility="{Binding IsVisBack}" Wigth="150"/>
+        </StackPanel>
            
           
-        </StackPanel>
+      
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
             <RowDefinition Height="*"/>

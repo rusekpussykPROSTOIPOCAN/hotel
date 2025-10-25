@@ -9,6 +9,7 @@
 
 
     <Button Command="{Binding Command, ElementName=Myb}"
+            Click="OnClick"
             Background="#999BD6"
            Foreground="WhiteSmoke"
             HorizontalContentAlignment="Center"

@@ -7,6 +7,7 @@
     <s:String x:Key="Pass">Введите пароль</s:String>
     <s:String x:Key="entry">Вход</s:String>
     <s:String x:Key="bookingtext">Просмотр брони</s:String>
+    <s:String x:Key="booking">Бронировать!</s:String>
     <s:String x:Key="numstext">Просмотр номеров</s:String>
     <s:String x:Key="scheduletext">Просмотр графика</s:String>
     <s:String x:Key="gueststext">Просмотр гостей</s:String>
@@ -21,6 +22,9 @@
     <s:String x:Key="edittasktext">Редактировать задание</s:String>
 
     <s:String x:Key="searchstring">Найти</s:String>
+    <s:String x:Key="id">id</s:String>
+    <s:String x:Key="back">Назад</s:String>
+    <s:String x:Key="reg">Регистрация</s:String>
     <s:String x:Key="checkoutstring">Выселить</s:String>
     <s:String x:Key="editguest">Редактировать данные</s:String>
     <s:String x:Key="editsell">Редактировать продажи</s:String>
@@ -49,5 +53,7 @@
     <s:String x:Key="Guest">Гость</s:String>
     <s:String x:Key="PriceNigth">Цена за ночь</s:String>
     <s:String x:Key="CountBads">Количество кроватей</s:String>
+    
+    
 
 </ResourceDictionary>

@@ -11,6 +11,7 @@
         <ScrollViewer VerticalScrollBarVisibility="Auto">
 
             <StackPanel CanVerticallyScroll="True">
+                <btn:LabelMy Placeholder="{StaticResource id}" Text="{Binding Id, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
                 <btn:LabelMy Placeholder="{StaticResource Name}" Text="{Binding Name, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
                 <btn:LabelMy Placeholder="{StaticResource Fname}" Text="{Binding Lname, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
                 <btn:LabelMy Placeholder="{StaticResource MName}" Text="{Binding Mname, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>

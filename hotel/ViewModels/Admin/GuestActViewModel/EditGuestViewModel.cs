@@ -14,6 +14,8 @@ namespace hotel.ViewModels.Admin.GuestActViewModel
   public partial  class EditGuestViewModel:ObservableObject
     {
         [ObservableProperty]
+        private int _id;
+        [ObservableProperty]
         private string _name ;
 
         [ObservableProperty]
@@ -30,7 +32,8 @@ namespace hotel.ViewModels.Admin.GuestActViewModel
 
         public void Update(usersModel p)
         {
-            if (Isnull())
+            if (string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(Lname) ||
+            string.IsNullOrWhiteSpace(Mname) || string.IsNullOrWhiteSpace(Log))
             {
                 MessageBox.Show("Заполните все поля!");
                 return;
@@ -39,7 +42,7 @@ namespace hotel.ViewModels.Admin.GuestActViewModel
 
             var parameters = new Dictionary<string, object>
                     {
-                        {"@id", p.Id },
+                        {"@id", Id },
                         {"@Name", Name},
                         {"@Lname", Lname},
                         {"@Mname", Mname},
@@ -52,15 +55,7 @@ namespace hotel.ViewModels.Admin.GuestActViewModel
             DataBaseService.Instance.ExecuteQuery(sql, parameters);
             MessageBox.Show("Обновлено!");
         }
-        public bool Isnull()
-        {
-            return string.IsNullOrWhiteSpace(Name) ||
-                   string.IsNullOrWhiteSpace(Lname) ||
-                   string.IsNullOrWhiteSpace(Mname) ||
-                   string.IsNullOrWhiteSpace(Log) ||
-                 
-                   Birthday == default(DateTime);
-        }
+       
 
     }
 }

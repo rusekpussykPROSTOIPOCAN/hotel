@@ -24,9 +24,23 @@ namespace hotel.Common.Base
             get { return (ICommand)GetValue(CommandProperty); }
             set { SetValue(CommandProperty, value); }
         }
+        public static readonly RoutedEvent ClickEvent =
+       EventManager.RegisterRoutedEvent(
+           "Click",
+           RoutingStrategy.Bubble,
+           typeof(RoutedEventHandler),
+           typeof(LabelMy));
 
-        
+        public event RoutedEventHandler Click
+        {
+            add { AddHandler(ClickEvent, value); }
+            remove { RemoveHandler(ClickEvent, value); }
+        }
 
+        private void OnClick(object sender, RoutedEventArgs e)
+        {
+            RaiseEvent(new RoutedEventArgs(ClickEvent));
+        }
         public object Placeholder
         {
             get { return GetValue(PlaceholderProperty); }

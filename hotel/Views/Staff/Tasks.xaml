@@ -17,7 +17,7 @@
         <DataGrid Visibility="{Binding IsVis}" Grid.Row="1" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название услуги" />
-                <DataGridTextColumn Header="Цена"/>
+               
                 <DataGridTextColumn Header="Описание"/>
                 
                 <DataGridTemplateColumn Header="Действия">

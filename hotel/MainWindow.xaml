@@ -8,21 +8,22 @@
              xmlns:btn="clr-namespace:hotel.Common.Base"
          xmlns:textbox="clr-namespace:hotel.Common.Base"
         xmlns:vm="clr-namespace:hotel.ViewModels"
-           Title="" Height="450" Width="400">
+           Title="" Height="450" Width="400"   Loaded="Window_Loaded" >
+    
     <Window.DataContext>
         <vm:MainViewModel/>
     </Window.DataContext>
     <Window.Resources>
-        <Style TargetType="Button">
-            <Setter Property="Background" Value="#999BD6"/>
-            <Setter Property="Foreground" Value="WhiteSmoke"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-        </Style>
+     
     </Window.Resources>
     <Grid>
+       
+        <textbox:LabelMy Text="{Binding Login, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Placeholder="{StaticResource Log}" />
+        <textbox:LabelMy Text="{Binding Password, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Placeholder="{StaticResource Pass}"/>
+
+        <btn:Btn Grid.Row="3" Grid.ColumnSpan="3" Command="{Binding LoginTCommand}" Placeholder="{StaticResource entry}"  Wigth="100"/>
+        <Button Background="Transparent" BorderBrush="Transparent" FontStyle="Italic" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="3" Grid.ColumnSpan="3" Command="{Binding RegistrCommand}" Content="{StaticResource reg}"  Width="100"/>
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"  HorizontalAlignment="Center" Content="{StaticResource Hello}"/>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
@@ -34,14 +35,5 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-
-        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"  HorizontalAlignment="Center" Content="{StaticResource Hello}"/>
-        <textbox:LabelMy Text="{Binding Login, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Placeholder="{StaticResource Log}" />
-        <textbox:LabelMy Text="{Binding Password, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Placeholder="{StaticResource Pass}"/>
-
-        <Button Grid.Row="3" Grid.ColumnSpan="3" Command="{Binding LoginTCommand}" Content="{StaticResource entry}"  Width="100"/>
-
-
-
     </Grid>
 </Window>
