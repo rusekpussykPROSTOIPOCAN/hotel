@@ -1,45 +1,174 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using hotel.Models;
+using hotel.Services;
+using hotel.ViewModels.Admin.GuestActViewModel;
+using hotel.ViewModels.Admin.TaskActViewModels;
+using hotel.Views.Admin.GuestAct;
 using hotel.Views.Admin.TasksAct;
+using System.Collections.ObjectModel;
+using System.Data;
+using System.Diagnostics;
+using System.Windows;
 
 namespace hotel.ViewModels.Staff
 {
     public partial class TascksViewModel : ObservableObject
     {
         [ObservableProperty]
+        private string _isVisBack = "Hidden";
+        [ObservableProperty]
         private object _currentpage;
         [ObservableProperty]
         private string _isVis = "Visibly";
         [ObservableProperty]
-        private string _isVischeckin = "Visibly";
-
+        private string _isVisEdit = "Hidden";
+        [ObservableProperty]
+        private string _isVisCreate = "Visibly";
+        [ObservableProperty]
+        private ObservableCollection<TaskModel> _tasks =new();
         public TascksViewModel(){
             Currentpage = null;
+            LoadTask();
         }
-
+       
         public string Togle(string a)
         {
             a = a == "Visibly" ? "Hidden" : "Visibly";
             return a;
         }
-        [RelayCommand]
-        public void delete(object param)
+        public void LoadTask()
         {
+            Tasks.Clear();
+
+            DataTable dataTable = DataBaseService.Instance.ExecuteQuery(@"SELECT id_task, datetime, users.name, users.lname, users.mname,discript, statusestasks.status ,status_task_id FROM tasks left join users on users.id_guest = tasks.id_staff left join statusestasks on  statusestasks.Id_status = tasks.status_task_id");
+            foreach (DataRow item in dataTable.Rows)
+            {
+                Tasks.Add(new TaskModel
+                {
+                    Id = Convert.ToInt32(item["id_task"]),
+                    dateTime = Convert.ToDateTime(item["datetime"]),
+                    id_staff = Convert.ToInt32(item["status_task_id"]),
+                    discript = item["discript"].ToString(),
+                    status_task_id = Convert.ToInt32(item["status_task_id"]),
+
+                    Staff = new usersModel
+                    {
+                        Name = item["name"].ToString(),
+                        Lname = item["lname"].ToString(),
+                        Mname = item["mname"].ToString()
+                    },
+
+                    StatusTask = new statustaskModel
+                    {
+                        Id =Convert.ToInt32( item["status_task_id"]) ,
+                        StatusTask = item["status"].ToString()
+                    }
+                });
+            }
+
 
         }
         [RelayCommand]
-        public void edit(object param)
+        public void delete(TaskModel param)
         {
-            IsVis = Togle(IsVis);
-            Currentpage = new EditTaskPage();
+            DataBaseService.Instance.ExecuteQuery($"DELETE FROM tasks WHERE id_task={param.Id}");
+          LoadTask();
+        }
+        private TaskEditViewModel editVm;
+        [RelayCommand]
+        public void edit(TaskModel param)
+        {
 
+
+            if (IsVis == "Visibly") // Если сейчас видим список
+            {
+                // ОТКРЫВАЕМ РЕДАКТИРОВАНИЕ
+                editVm = new TaskEditViewModel()
+                {
+                    Id = param.Id,
+                    Disc = param.discript,
+                    SelectedStaff = param.Staff,
+                    Selectedstask = param.StatusTask,
+                };
+
+                var editT = new EditTaskPage();
+                editT.DataContext = editVm;
+                Currentpage = editT;
+
+                // Меняем видимость
+                IsVis = "Hidden"; // Скрываем список
+                IsVisEdit = "Visibly"; // Показываем кнопку редактирования
+                IsVisCreate = "Hidden"; // Скрываем кнопку создания
+                IsVisBack = "Visibly"; // Показываем кнопку назад
+            }
+            else // Если сейчас открыто редактирование
+            {
+                // СОХРАНЯЕМ И ЗАКРЫВАЕМ
+                if (editVm != null)
+                {
+                    editVm.Update(param);
+                    LoadTask();
+                }
+
+                // Возвращаем к списку
+                Currentpage = null;
+                IsVis = "Visibly"; // Показываем список
+                IsVisEdit = "Hidden"; // Скрываем кнопку редактирования
+                IsVisCreate = "Visibly"; // Показываем кнопку создания
+                IsVisBack = "Hidden"; // Скрываем кнопку назад
+                editVm = null;
+            }
         }
         [RelayCommand]
-        public void create(object param)
+        public void Back()
         {
-            IsVis = Togle(IsVis);
-            Currentpage = new CreateTaskPage();
-
+            // Возврат к списку без сохранения
+            Currentpage = null;
+            IsVis = "Visibly";
+            IsVisEdit = "Hidden";
+            IsVisCreate = "Visibly";
+            IsVisBack = "Hidden";
+            editVm = null;
         }
-    }
+        [RelayCommand]
+        public void create()
+        {
+
+
+            if (IsVis == "Visibly")
+            {
+                var addG = new CreateTaskPage();
+                Currentpage = addG;
+                IsVis = Togle(IsVis);
+            }
+            else
+            {
+              
+                if (Currentpage is CreateTaskPage currentPage)
+                {
+                    var currentViewModel = currentPage.DataContext as CreateTaskViewModel;
+
+                    if (currentViewModel == null)
+                    {
+                        MessageBox.Show("Ошибка инициализации страницы");
+                        return;
+                    }
+
+
+                    if (currentViewModel.IsNull())
+                    {
+                        MessageBox.Show("Заполните поля");
+                        return;
+                    }
+
+                    currentViewModel.CreateTask();
+                    LoadTask();
+                }
+
+                IsVis = Togle(IsVis);
+                Currentpage = null;
+            }
+        }
+        }
 }

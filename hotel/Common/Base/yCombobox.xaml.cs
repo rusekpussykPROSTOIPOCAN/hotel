@@ -1,25 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
-using System;
+﻿
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace hotel.Common.Base
 {
-    /// <summary>
-    /// Логика взаимодействия для yCombobox.xaml
-    /// </summary>
+
     public partial class yCombobox : UserControl
     {
         public static readonly DependencyProperty wight = DependencyProperty.
@@ -43,20 +33,23 @@ namespace hotel.Common.Base
             InitializeComponent();
         }
         public static readonly DependencyProperty SelectedItemProperty =
-       DependencyProperty.Register("SelectedItem", typeof(object), typeof(yCombobox), new PropertyMetadata(null));
+         DependencyProperty.Register("SelectedItem", typeof(object), typeof(yCombobox),
+             new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault)); // ВАЖНО
+
         public object SelectedItem
         {
             get => GetValue(SelectedItemProperty);
-
             set => SetValue(SelectedItemProperty, value);
         }
-        public static readonly DependencyProperty ItemSoursePr =
-      DependencyProperty.Register("ItemSourse", typeof(IEnumerable), typeof(yCombobox),new PropertyMetadata(null));
-        public IEnumerable ItemSourse
-        {
-            get => (IEnumerable)GetValue(ItemSoursePr);
 
-            set => SetValue(ItemSoursePr, value);
+        public static readonly DependencyProperty ItemsSourceProperty =
+            DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(yCombobox),
+                new PropertyMetadata(null));
+
+        public IEnumerable ItemsSource
+        {
+            get => (IEnumerable)GetValue(ItemsSourceProperty);
+            set => SetValue(ItemsSourceProperty, value);
         }
         public static readonly DependencyProperty DisplayMemberPathProperty =
         DependencyProperty.Register("DisplayMemberPath", typeof(string), typeof(yCombobox), new PropertyMetadata(null));
@@ -72,10 +65,24 @@ namespace hotel.Common.Base
             set => SetValue(DisplayMemberPathProperty, value);
         }
 
+        public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(yCombobox), new PropertyMetadata(null));
+        public string Text
+        {
+            get => (string)GetValue(TextProperty);
+            set => SetValue(TextProperty, value);
+        }
+
         private void MyBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            OnPreviewTextInput(e);
+
             MyBox.IsDropDownOpen = true;
         }
+
+        private void MyBox_PreviewKeyUp(object sender, KeyEventArgs e)
+        {
+            Text = MyBox.Text;
+            if (!string.IsNullOrEmpty(Text)) { MyBox.IsDropDownOpen = true; }
+        }
+        
     }
 }

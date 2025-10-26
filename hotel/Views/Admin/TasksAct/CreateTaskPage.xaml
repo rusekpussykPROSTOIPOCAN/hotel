@@ -1,15 +1,25 @@
 ﻿<UserControl x:Class="hotel.Views.Admin.TasksAct.CreateTaskPage"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:hotel.Views.Admin.TasksAct"
-             mc:Ignorable="d" 
-               xmlns:btn="clr-namespace:hotel.Common.Base"
-             
-             d:DesignHeight="450" d:DesignWidth="800">
-    
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:hotel.Views.Admin.GuestAct"
+          xmlns:btn="clr-namespace:hotel.Common.Base"
+    mc:Ignorable="d"
+         xmlns:vm="clr-namespace:hotel.ViewModels.Admin.TaskActViewModels"
+     Height="Auto" Width="Auto">
+    <UserControl.DataContext>
+        <vm:CreateTaskViewModel/>
+    </UserControl.DataContext>
     <Grid>
-            
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+            <StackPanel CanVerticallyScroll="True">
+                
+                <btn:LabelMy Placeholder="{StaticResource TaskDisk}" Text="{Binding Disc, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <btn:yCombobox ItemsSource="{Binding Staff}" SelectedItem="{Binding SelectedStaff}" DisplayMemberPath="FullName" Wigth="550" Margin="20,0,10,0"/>
+               
+            </StackPanel >
+        </ScrollViewer>
     </Grid>
 </UserControl>

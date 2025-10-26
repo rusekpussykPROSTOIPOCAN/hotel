@@ -11,7 +11,7 @@ namespace hotel.Models
         public int Id { get; set; }
         public string Date { get; set; }
         public int id_staff { get; set; }
-        public virtual Staff Staff { get; set; }
+        public virtual usersModel Staff { get; set; }
         public int id_user { get; set; }
         public virtual usersModel User { get; set; }
         public int id_uslugi { get; set; }

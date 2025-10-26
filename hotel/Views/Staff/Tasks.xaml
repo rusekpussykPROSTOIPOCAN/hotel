@@ -5,34 +5,66 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hotel.Views.Staff"
         mc:Ignorable="d"
-             xmlns:btn="clr-namespace:hotel.Common.Base"
-             xmlns:vm="clr-namespace:hotel.ViewModels.Staff"
-         Height="350" Width="600">
+        xmlns:btn="clr-namespace:hotel.Common.Base"
+        xmlns:vm="clr-namespace:hotel.ViewModels.Staff"
+        Height="350" Width="600">
+
     <UserControl.DataContext>
         <vm:TascksViewModel/>
     </UserControl.DataContext>
+
     <Grid>
         <btn:MySearch Visibility="{Binding IsVis}" Grid.Row="0"/>
         <btn:DashBoasrdForAdmin UserControl="{Binding Currentpage}" Grid.Row="1"/>
-        <DataGrid Visibility="{Binding IsVis}" Grid.Row="1" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Название услуги" />
-               
-                <DataGridTextColumn Header="Описание"/>
-                
-                <DataGridTemplateColumn Header="Действия">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <btn:Btn Placeholder="{StaticResource createtasktext}"  Wigth="120" Command="{Binding deleteCommand}" Params="{Binding}" />
-                                <btn:Btn Placeholder="{StaticResource edittasktext}" Wigth="150" Command="{Binding editCommand}" Params="{Binding}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-        <btn:Btn Grid.Row="2" Placeholder="{StaticResource createtasktext}" Command="{Binding createCommand}" />
+
+        <ScrollViewer Visibility="{Binding IsVis}" Grid.Row="1" 
+                      HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <DataGrid ItemsSource="{Binding Tasks}"  
+                      AutoGenerateColumns="False" 
+                      IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Описание" Binding="{Binding discript}" />
+                    <DataGridTextColumn Header="Дата задания" Binding="{Binding dateTime, StringFormat=dd.MM.yyyy HH:mm}" />
+                    <DataGridTextColumn Header="Выполняющий" Binding="{Binding Staff.FullName}" />
+                    <DataGridTextColumn Header="Статус" Binding="{Binding StatusTask.StatusTask}" />
+
+                    <DataGridTemplateColumn Header="Действия">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <btn:Btn Placeholder="Удалить" 
+                                             Command="{Binding DataContext.deleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
+                                             Params="{Binding}" />
+                                    <btn:Btn Placeholder="Редактировать" 
+                                             Command="{Binding DataContext.editCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
+                                             Params="{Binding}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+
+        <!-- Кнопки управления -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left">
+            <btn:Btn Placeholder="Создать задачу" 
+                     Command="{Binding createCommand}" 
+                     Visibility="{Binding IsVisCreate}" 
+                     Width="150" Margin="5"/>
+
+            <btn:Btn Placeholder="Сохранить" 
+                     Command="{Binding editCommand}" 
+                     Visibility="{Binding IsVisEdit}" 
+                     Width="150" Margin="5"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" HorizontalAlignment="Right">
+            <btn:Btn Placeholder="Назад" 
+                     Command="{Binding BackCommand}" 
+                     Visibility="{Binding IsVisBack}" 
+                     Width="150" Margin="5"/>
+        </StackPanel>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -40,5 +72,4 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
     </Grid>
-    <!--сделать появление кнопки для выдачи задания на уборку при статусе "грязно" и менять статус если кто-то взял задание на "в работе" смена статуса на "убрано", если таск отмечен выполненным-->
 </UserControl>

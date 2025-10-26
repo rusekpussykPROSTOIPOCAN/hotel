@@ -18,7 +18,10 @@
     <s:String x:Key="deleteguesttext">Выселить гостя</s:String>
 
     <s:String x:Key="createtasktext">Создать задание</s:String>
+    <s:String x:Key="TaskPersonal">Кому назначить?</s:String>
+    <s:String x:Key="TaskDisk">Описание задания</s:String>
     <s:String x:Key="deletetasktext">Удалить задание</s:String>
+    <s:String x:Key="statustsk">Выбери статус</s:String>
     <s:String x:Key="edittasktext">Редактировать задание</s:String>
 
     <s:String x:Key="searchstring">Найти</s:String>
