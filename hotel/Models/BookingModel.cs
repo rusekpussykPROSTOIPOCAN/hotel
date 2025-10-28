@@ -1,6 +1,6 @@
 ﻿namespace hotel.Models
 {
-    class BookingModel
+   public class BookingModel
     {
        public int Id { get; set; }
         public DateTime date { get; set; }

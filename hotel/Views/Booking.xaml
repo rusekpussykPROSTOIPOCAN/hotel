@@ -14,18 +14,18 @@ xmlns:vm ="clr-namespace:hotel.ViewModels"
     <Grid>
 
         <btn:MySearch  Grid.Row="0" Visib="{Binding Vis2}"/>
-        <DataGrid Grid.Row="1" AutoGenerateColumns="False" Visibility="{Binding Vis2}">
+        <DataGrid IsReadOnly="True" ItemsSource="{Binding Booking}" Grid.Row="1" AutoGenerateColumns="False" Visibility="{Binding Vis2}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Дата Бронирования" />
-                <DataGridTextColumn Header="Номер комнаты"/>
-                <DataGridTextColumn Header="Гость"/>
-                <DataGridTextColumn Header="Статус" />
+                <DataGridTextColumn Header="Дата Бронирования" Binding="{Binding date,StringFormat=\{0:d\}}" />
+                <DataGridTextColumn Header="Номер комнаты" Binding="{Binding RoomModel.num}"/>
+                <DataGridTextColumn Header="Гость" Binding="{Binding usersModel.FullName}"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Status.Status }"/>
                 <DataGridTemplateColumn Header="Действия">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <btn:Btn Placeholder="{StaticResource deletebooking}"  Wigth="120"  Params="{Binding}" />
                                 <btn:Btn Placeholder="{StaticResource acceptbooking}" Wigth="150"  Params="{Binding}"/>
+                                <btn:Btn Placeholder="{StaticResource deletebooking}"  Wigth="120"  Params="{Binding}" />
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
