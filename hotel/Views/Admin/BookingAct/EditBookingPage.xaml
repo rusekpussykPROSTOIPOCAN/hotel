@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="hotel.Views.Admin.BookingAct.EditBookingPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:hotel.Views.Admin.BookingAct"
+        mc:Ignorable="d"
+        xmlns:btn="clr-namespace:hotel.Common.Base"
+             xmlns:vm="clr-namespace:hotel.ViewModels.Admin.BookingActViewModel"
+       Height="Auto" Width="Auto">
+    <UserControl.DataContext>
+        <vm:EditBookingViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+        
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+            <StackPanel CanVerticallyScroll="True">
+                <btn:LabelMy Placeholder="{StaticResource Num}" Text="{Binding Num, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <btn:LabelMy Placeholder="{StaticResource NFM}" Text="{Binding Nfm, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+
+                <btn:LabelMy Placeholder="{StaticResource PriceNigth}" Text="{Binding Price, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <btn:yCombobox Text="{StaticResource NumType}" ItemsSource="{Binding}" SelectedItem="{Binding RoomTypes}" Wigth="700" MarginSet="25,5,15,5"/>
+
+
+                <DatePicker SelectedDate="{Binding Checkin, StringFormat=yyyy-MM-dd}" 
+   BorderBrush="Transparent" 
+   Margin="25,0,10,0"/>
+                <DatePicker SelectedDate="{Binding Checkout, StringFormat=yyyy-MM-dd}" 
+   BorderBrush="Transparent" 
+   Margin="25,0,10,0"/>
+
+            </StackPanel >
+        </ScrollViewer>
+    </Grid>
+</UserControl>

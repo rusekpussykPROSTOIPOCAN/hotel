@@ -44,6 +44,7 @@
     <s:String x:Key="create">Создать рассписание</s:String>
     
     <s:String x:Key="Name">Имя</s:String>
+    <s:String x:Key="NFM">ФИО</s:String>
     <s:String x:Key="Fname">Фамилия</s:String>
     <s:String x:Key="MName">Отчество</s:String>
     <s:String x:Key="SeriaandNum">Серия и номер паспорта</s:String>

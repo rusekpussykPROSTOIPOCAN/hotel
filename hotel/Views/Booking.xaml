@@ -25,7 +25,7 @@ xmlns:vm ="clr-namespace:hotel.ViewModels"
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <btn:Btn Placeholder="{StaticResource acceptbooking}" Wigth="150"  Params="{Binding}"/>
-                                <btn:Btn Placeholder="{StaticResource deletebooking}"  Wigth="120"  Params="{Binding}" />
+                                <btn:Btn Placeholder="{StaticResource deletebooking}"  Command="{Binding DataContext.deleteCommand,RelativeSource={RelativeSource AncestorType=DataGrid}}" Wigth="120"  Params="{Binding}" />
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

@@ -57,9 +57,9 @@ namespace hotel.ViewModels.Admin.TaskActViewModels
                 var param = new Dictionary<string, object>
 {
                     {"@id_task", GenerateTaskId() },
-            {"@datetime", DateTime.Now},
-            {"@id_staff", staffId},
-            {"@discript", Disc ?? ""},
+                    {"@datetime", DateTime.Now},
+                    {"@id_staff", staffId},
+                    {"@discript", Disc ?? ""},
 
 
 };

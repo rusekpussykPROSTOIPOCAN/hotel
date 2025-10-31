@@ -71,15 +71,20 @@ namespace hotel.ViewModels
 
 
         }
+       
         [RelayCommand]
-        public void checkin()
+        public void checkin(BookingModel param)
         {
+            if (param.Status.Status == "Оплачен")
+            {
 
+            }
         }
         [RelayCommand]
-        public void delete(object param)
+        public void delete(BookingModel param)
         {
-
+            DataBaseService.Instance.ExecuteQuery($"DELETE FROM booking WHERE id_booking={param.Id}");
+            LoadGuest();
         }
     }
 }
