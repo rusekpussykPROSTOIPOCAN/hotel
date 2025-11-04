@@ -12,19 +12,20 @@ xmlns:vm ="clr-namespace:hotel.ViewModels"
         <vm:BookingViewModel/>
     </UserControl.DataContext>
     <Grid>
-
         <btn:MySearch  Grid.Row="0" Visib="{Binding Vis2}"/>
+        <btn:DashBoasrdForAdmin Grid.Row="1"  UserControl="{Binding Currentpage}"/>
         <DataGrid IsReadOnly="True" ItemsSource="{Binding Booking}" Grid.Row="1" AutoGenerateColumns="False" Visibility="{Binding Vis2}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Дата Бронирования" Binding="{Binding date,StringFormat=\{0:d\}}" />
                 <DataGridTextColumn Header="Номер комнаты" Binding="{Binding RoomModel.num}"/>
                 <DataGridTextColumn Header="Гость" Binding="{Binding usersModel.FullName}"/>
-                <DataGridTextColumn Header="Статус" Binding="{Binding Status.Status }"/>
+                <DataGridTextColumn Header="Статус комнаты" Binding="{Binding Status.Status }"/>
+                <DataGridTextColumn Header="Оплата" Binding="{Binding Paystatus.status }"/>
                 <DataGridTemplateColumn Header="Действия">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <btn:Btn Placeholder="{StaticResource acceptbooking}" Wigth="150"  Params="{Binding}"/>
+                                <btn:Btn Placeholder="{StaticResource acceptbooking}" Wigth="150"  Command="{Binding DataContext.checkinCommand,RelativeSource={RelativeSource AncestorType=DataGrid}}" Params="{Binding}"/>
                                 <btn:Btn Placeholder="{StaticResource deletebooking}"  Command="{Binding DataContext.deleteCommand,RelativeSource={RelativeSource AncestorType=DataGrid}}" Wigth="120"  Params="{Binding}" />
                             </StackPanel>
                         </DataTemplate>
@@ -50,9 +51,15 @@ xmlns:vm ="clr-namespace:hotel.ViewModels"
 
             </StackPanel >
         </ScrollViewer>
+
+        <btn:Btn Placeholder="Сохранить" Grid.Row="2"
+                     Command="{Binding checkinCommand}" 
+                     Visibility="{Binding IsVisEdit}" 
+                     Width="150" Margin="5"/>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         
     </Grid>

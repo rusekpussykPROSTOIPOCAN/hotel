@@ -81,9 +81,9 @@ namespace hotel.ViewModels.Staff
         {
 
 
-            if (IsVis == "Visibly") // Если сейчас видим список
+            if (IsVis == "Visibly") 
             {
-                // ОТКРЫВАЕМ РЕДАКТИРОВАНИЕ
+                
                 editVm = new TaskEditViewModel()
                 {
                     Id = param.Id,
@@ -96,34 +96,34 @@ namespace hotel.ViewModels.Staff
                 editT.DataContext = editVm;
                 Currentpage = editT;
 
-                // Меняем видимость
-                IsVis = "Hidden"; // Скрываем список
-                IsVisEdit = "Visibly"; // Показываем кнопку редактирования
-                IsVisCreate = "Hidden"; // Скрываем кнопку создания
-                IsVisBack = "Visibly"; // Показываем кнопку назад
+             
+                IsVis = "Hidden"; 
+                IsVisEdit = "Visibly"; 
+                IsVisCreate = "Hidden"; 
+                IsVisBack = "Visibly"; 
             }
-            else // Если сейчас открыто редактирование
+            else 
             {
-                // СОХРАНЯЕМ И ЗАКРЫВАЕМ
+              
                 if (editVm != null)
                 {
                     editVm.Update(param);
                     LoadTask();
                 }
 
-                // Возвращаем к списку
+               
                 Currentpage = null;
-                IsVis = "Visibly"; // Показываем список
-                IsVisEdit = "Hidden"; // Скрываем кнопку редактирования
-                IsVisCreate = "Visibly"; // Показываем кнопку создания
-                IsVisBack = "Hidden"; // Скрываем кнопку назад
+                IsVis = "Visibly"; 
+                IsVisEdit = "Hidden";
+                IsVisCreate = "Visibly"; 
+                IsVisBack = "Hidden"; 
                 editVm = null;
             }
         }
         [RelayCommand]
         public void Back()
         {
-            // Возврат к списку без сохранения
+            
             Currentpage = null;
             IsVis = "Visibly";
             IsVisEdit = "Hidden";

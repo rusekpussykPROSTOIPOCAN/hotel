@@ -10,6 +10,8 @@
         public virtual StatusRoomModel Status { get; set; }
         public int id_guest { get; set; }
         public virtual usersModel usersModel { get; set; }
+        public int id_pay { get; set; }
+        public virtual PaystatusModel Paystatus { get; set; }
        
     }
 }

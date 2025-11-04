@@ -55,14 +55,14 @@ namespace hotel.ViewModels.Admin.TaskActViewModels
                 var staffId = staff.Id;
                 string q = @"INSERT INTO tasks(id_task, datetime, id_staff, discript, status_task_id) VALUES (@id_task, @datetime, @id_staff, @discript, 1)";
                 var param = new Dictionary<string, object>
-{
+                {
                     {"@id_task", GenerateTaskId() },
                     {"@datetime", DateTime.Now},
                     {"@id_staff", staffId},
                     {"@discript", Disc ?? ""},
 
 
-};
+                };
                 DataBaseService.Instance.ExecuteQuery(q, param);
             }
 

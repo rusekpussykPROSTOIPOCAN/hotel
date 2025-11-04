@@ -23,7 +23,8 @@
                 <DataGridTextColumn Header="Тип комнаты"/>
                 <DataGridTextColumn Header="Номер"/>
                 <DataGridTextColumn Header="Количество мест"/>
-                <DataGridTextColumn Header="Статус??"/>
+                <DataGridTextColumn Header="Статус"/>
+                <DataGridTextColumn Header="Гость"/>
                 <DataGridTemplateColumn Header="Действия">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

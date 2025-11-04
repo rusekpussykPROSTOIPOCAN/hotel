@@ -1,4 +1,7 @@
-﻿using System;
+﻿using hotel.Models;
+using hotel.ViewModels;
+using hotel.ViewModels.Admin.BookingActViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +22,10 @@ namespace hotel.Views.Admin.BookingAct
     /// </summary>
     public partial class EditBookingPage : UserControl
     {
-        public EditBookingPage()
+        public EditBookingPage( )
         {
             InitializeComponent();
+            DataContext = new EditBookingViewModel();
         }
     }
 }

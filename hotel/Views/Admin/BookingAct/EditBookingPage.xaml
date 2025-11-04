@@ -17,10 +17,9 @@
 
             <StackPanel CanVerticallyScroll="True">
                 <btn:LabelMy Placeholder="{StaticResource Num}" Text="{Binding Num, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
-                <btn:LabelMy Placeholder="{StaticResource NFM}" Text="{Binding Nfm, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
 
                 <btn:LabelMy Placeholder="{StaticResource PriceNigth}" Text="{Binding Price, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
-                <btn:yCombobox Text="{StaticResource NumType}" ItemsSource="{Binding}" SelectedItem="{Binding RoomTypes}" Wigth="700" MarginSet="25,5,15,5"/>
+                <btn:yCombobox Text="Карта" ItemsSource="{Binding Card}" SelectedItem="{Binding SelectedCard}" DisplayMemberPath="Card_num"  MarginSet="25,5,0,5" />
 
 
                 <DatePicker SelectedDate="{Binding Checkin, StringFormat=yyyy-MM-dd}" 

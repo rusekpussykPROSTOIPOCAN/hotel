@@ -6,5 +6,7 @@ namespace hotel.Models
     {
        public int Id { get; set; }
         public string Card_num { get; set; }
+        public byte inproc { get; set; }
     }
+
 }

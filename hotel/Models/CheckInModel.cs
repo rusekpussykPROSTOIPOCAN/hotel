@@ -18,5 +18,8 @@ namespace hotel.Models
         public float priceNigth { get; set; }
         public int id_typeRoom { get; set; }
         public virtual RoomTypeModel roomType { get; set; }
+        public int id_card { get; set; }
+        public virtual CardModel card { get; set; }
+
     }
 }
