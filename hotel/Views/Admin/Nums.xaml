@@ -16,20 +16,20 @@
     <Grid>
         <btn:MySearch Visib="{Binding IsVis}" />
         <btn:DashBoasrdForAdmin Grid.Row="1" UserControl="{Binding Currentpage}"/>
-        <DataGrid Visibility="{Binding IsVis}" IsReadOnly="{Binding IsReadOnly}" x:Name="NumsTable" Grid.Row="1" AutoGenerateColumns="False">
+        <DataGrid ItemsSource="{Binding Rooms}" Visibility="{Binding IsVis}" IsReadOnly="{Binding IsReadOnly}" x:Name="NumsTable" Grid.Row="1" AutoGenerateColumns="False">
                 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Карта"/>
-                <DataGridTextColumn Header="Тип комнаты"/>
-                <DataGridTextColumn Header="Номер"/>
-                <DataGridTextColumn Header="Количество мест"/>
-                <DataGridTextColumn Header="Статус"/>
-                <DataGridTextColumn Header="Гость"/>
+                <DataGridTextColumn Header="Номер" Binding="{Binding num}"/>
+                <DataGridTextColumn Header="Карта" Binding="{Binding Card.Card_num}"/>
+                <DataGridTextColumn Header="Количество мест" Binding="{Binding count_bad}"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding StatusRoom.Status}"/>
+                <DataGridTextColumn Header="Тип комнаты" Binding="{Binding RoomType.Type}"/> 
+                <DataGridTextColumn Header="Гость" Binding="{Binding Guest.FullName}"/>
                 <DataGridTemplateColumn Header="Действия">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <btn:Btn Placeholder="{StaticResource checkoutstring}" Command="{Binding checkoutCommand}" />
+                                <btn:Btn Visib="{Binding Guest.Check}" Placeholder="{StaticResource checkoutstring}" Command="{Binding checkoutCommand}" />
                                 <btn:Btn Placeholder="{StaticResource editguest}" Wigth="150" Command="{Binding editCommand}" />
                             </StackPanel>
                         </DataTemplate>

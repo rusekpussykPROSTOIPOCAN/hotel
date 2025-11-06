@@ -12,6 +12,9 @@ namespace hotel.Models
         public string num { get; set; }
         public int count_bad { get; set; }
         public int id_status { get; set; } 
+        public int id_guest { get; set; } 
         public virtual StatusRoomModel StatusRoom { get; set; }
+        public virtual usersModel Guest { get; set; }
+
     }
 }
