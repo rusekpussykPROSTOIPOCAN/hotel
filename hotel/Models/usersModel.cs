@@ -31,5 +31,6 @@ namespace hotel.Models
         public string roleconn {  get; set; }
         public string FullName => $"{Lname} {Name} {Mname}".Trim() ;
         public Visibility Check => !string.IsNullOrEmpty(FullName) ? Visibility.Visible : Visibility.Collapsed;
+      
     }
 }

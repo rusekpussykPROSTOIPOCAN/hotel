@@ -19,7 +19,9 @@
                   SelectedItem="{Binding SelectedItem, ElementName=cm}"
                   DisplayMemberPath="{Binding DisplayMemberPath, ElementName=cm}"
                   Margin="{Binding MarginSet, ElementName=cm}"
-                  VerticalContentAlignment="Center"/>
+                  VerticalContentAlignment="Center"
+                  
+                  />
         
     </WrapPanel>
 </UserControl>

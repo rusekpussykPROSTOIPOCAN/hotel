@@ -5,26 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hotel.Views.Staff"
         mc:Ignorable="d"
+        xmlns:vm="clr-namespace:hotel.ViewModels.Staff"
         xmlns:btn="clr-namespace:hotel.Common.Base"
         Title="StaffBoard" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:StaffBoardViewModel/>
+    </Window.DataContext>
     <Grid>
        
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="50" />
+              
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Grid.ColumnSpan="2" >
-
-                <btn:Btn MarginSet="5"  Placeholder="{StaticResource  bookingtext}" Command="{Binding ShowFirstCommand}"  Wigth="110"/>
-                <btn:Btn  Placeholder="{StaticResource gueststext}"   Command="{Binding ShowSecondCommand}" Wigth="110"/>
-                <btn:Btn  Placeholder="{StaticResource numstext}"  Command="{Binding ShowThirdCommand}" Wigth="120"/>
-                <btn:Btn   Placeholder="{StaticResource scheduletext}" Command="{Binding ShowFivethCommand}"  Wigth="120"/>
-
-                
-            </StackPanel>
-            <btn:DashBoasrdForAdmin Grid.Row="1" UserControl="{Binding CurrentPage}" Grid.ColumnSpan="2"/>
+        <Button HorizontalAlignment="Left" Grid.Row="2" Margin="10,0,0,0" Content="Выйти" Click="Button_Click" Width="100" Height="30" Background="DarkCyan"/>
+        <btn:DashBoasrdForAdmin  UserControl="{Binding Current}" Grid.ColumnSpan="2"/>
         
     </Grid>
 </Window>

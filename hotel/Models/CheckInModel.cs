@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace hotel.Models
 {
-    class CheckInModel
+    public class CheckInModel
     {
         public int Id { get; set; }
         public DateTime datein { get; set; }
@@ -15,7 +15,7 @@ namespace hotel.Models
         public virtual RoomModel room { get; set; }
         public int id_guest { get; set; }
         public virtual usersModel UsersModel { get; set; }
-        public float priceNigth { get; set; }
+        public decimal priceNigth { get; set; }
         public int id_typeRoom { get; set; }
         public virtual RoomTypeModel roomType { get; set; }
         public int id_card { get; set; }

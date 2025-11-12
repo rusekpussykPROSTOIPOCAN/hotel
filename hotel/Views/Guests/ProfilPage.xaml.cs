@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace hotel.Views.Admin.SellsAct
+namespace hotel.Views.Guests
 {
     /// <summary>
-    /// Логика взаимодействия для AddSell.xaml
+    /// Логика взаимодействия для ProfilPage.xaml
     /// </summary>
-    public partial class AddSell : UserControl
+    public partial class ProfilPage : UserControl
     {
-        public AddSell()
+        public ProfilPage()
         {
             InitializeComponent();
         }

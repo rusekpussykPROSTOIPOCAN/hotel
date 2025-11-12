@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using hotel.Models;
 using hotel.Services;
+using hotel.ViewModels.Admin.NumsActViewModel;
 using hotel.Views.Admin;
 using hotel.Views.Admin.NumsAct;
 using System.Collections.ObjectModel;
@@ -22,12 +23,14 @@ namespace hotel.ViewModels.Admin
 
         [ObservableProperty]
         private string _isVis = "Visibly";
+        [ObservableProperty]
+        private string _isVisEdit = "Hidden";
         
         [ObservableProperty]
         private string _isVischeckin = "Visibly";
         [ObservableProperty]
         private ObservableCollection<RoomModel> rooms = new ObservableCollection<RoomModel>();
-         
+        
 
         public string Togle(  string  a )
         {
@@ -42,12 +45,8 @@ namespace hotel.ViewModels.Admin
 
         private void Load()
         {
-            DataTable dataTable = DataBaseService.Instance.ExecuteQuery("SELECT statusesrooms.id_status_room, cards.card_num, roomtype.type, " +
-                "statusesrooms.status,users.name, users.lname,users.mname,Id_Room, num, id_card, " +
-                "count_bad, id_status, id_typeRoom, rooms.id_guest,roomtype.Id_TypeNum from rooms" +
-                " left join roomtype on roomtype.Id_TypeNum = rooms.Id_Room left join statusesrooms " +
-                "on statusesrooms.id_status_room = rooms.id_status left join users on users.id_guest " +
-                "= rooms.id_guest left join cards on cards.id_cards = rooms.id_card");
+            Rooms.Clear();
+            DataTable dataTable = DataBaseService.Instance.ExecuteQuery("SELECT price,statusesrooms.id_status_room, cards.card_num, roomtype.type,datein,dateout,            statusesrooms.status,users.name, users.lname,users.mname,Id_Room, num, rooms.id_card,               count_bad, id_status, rooms.id_typeRoom, rooms.id_guest,roomtype.Id_TypeNum from rooms              left join roomtype on roomtype.Id_TypeNum = rooms.Id_Room left join statusesrooms            on statusesrooms.id_status_room = rooms.id_status left join users on users.id_guest              = rooms.id_guest left join cards on cards.id_cards = rooms.id_card ");
             foreach (DataRow item in dataTable.Rows)
             {
 
@@ -81,36 +80,64 @@ namespace hotel.ViewModels.Admin
                     {
                         Id = item["id_typeRoom"] != DBNull.Value ? Convert.ToInt32(item["id_typeRoom"]) : 0,
                         Status = item["status"].ToString() ?? string.Empty
-                    }
+                    },
                    
+                        datein = item["datein"] as DateTime? ?? DateTime.MinValue ,
+                        dateout = item["dateout"] as DateTime? ?? DateTime.MinValue,
+                    
+                    PriceNigth =item["price"] != DBNull.Value ? Convert.ToDecimal(item["price"]) : 0
+
                 });
                
             }
            
         }
 
+       
         [RelayCommand]
-        public void checkin()
+        public void checkout(RoomModel param)
         {
-            Currentpage = new CheckIn();
-            IsVis = Togle(IsVis);
-           
-           
-            
+            DataTable dataTable = DataBaseService.Instance.ExecuteQuery($"Update rooms set id_guest = null,  datein = '0001-01-01', dateout = '0001-01-01',id_status = 2 , id_card = null where Id_Room = {param.Id}");
+          
+            DataTable dataTablea = DataBaseService.Instance.ExecuteQuery($"Update cards set inproc = 0 where id_cards = {param.id_card}");
+            DataTable dataTables = DataBaseService.Instance.ExecuteQuery($"Update checkin set dateout = now() where id_num = {param.Id}");
+         
+          
+            Load();
         }
+        public NumsEditViewModel model = new NumsEditViewModel();
+        public EditNums edits = new EditNums();
         [RelayCommand]
-        public void checkout(object param)
+        public void edit(RoomModel param)
         {
-           
-        }
-        [RelayCommand]
-        public void edit(object param)
-        {
-            Currentpage = new EditNums();
-            IsVis = Togle(IsVis);
-            IsVischeckin = Togle(IsVischeckin);
-           
-            
+            if (IsVis == "Visibly")
+            {
+                model = new();
+                edits = new();
+                model.Rooms.Add(new RoomModel
+                {
+                    Id = Convert.ToInt32(param.Id),
+                    num = param.num,
+                    id_typeroom = param.id_typeroom,
+                  
+
+                });
+
+                Currentpage = edits;
+                edits.DataContext = model;
+                IsVis = Togle(IsVis);
+                IsVischeckin = Togle(IsVischeckin);
+                IsVisEdit = Togle(IsVisEdit);
+
+            }
+            else
+            {
+                model.CheckIn();
+                Load();
+                IsVis = Togle(IsVis);
+                IsVischeckin = Togle(IsVischeckin);
+                IsVisEdit = Togle(IsVisEdit);
+            }
         }
     }
 }

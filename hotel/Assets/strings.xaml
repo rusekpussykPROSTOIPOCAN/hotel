@@ -5,13 +5,14 @@
     <s:String x:Key="Hello">Очень крутое приветствие</s:String>
     <s:String x:Key="Log">Введите логин</s:String>
     <s:String x:Key="Pass">Введите пароль</s:String>
+    <s:String x:Key="Passold">Введите старый пароль</s:String>
     <s:String x:Key="entry">Вход</s:String>
     <s:String x:Key="bookingtext">Просмотр брони</s:String>
     <s:String x:Key="booking">Бронировать!</s:String>
     <s:String x:Key="numstext">Просмотр номеров</s:String>
     <s:String x:Key="scheduletext">Просмотр графика</s:String>
     <s:String x:Key="gueststext">Просмотр гостей</s:String>
-    <s:String x:Key="selltext">Просмотр продаж</s:String>
+    <s:String x:Key="selltext">Стоимость проживания</s:String>
     <s:String x:Key="taskstext">Просмотр заданий</s:String>
     <s:String x:Key="editguesttext">Редактировать заселение</s:String>
     <s:String x:Key="checkinstring">Заселить гостя</s:String>
@@ -23,6 +24,13 @@
     <s:String x:Key="deletetasktext">Удалить задание</s:String>
     <s:String x:Key="statustsk">Выбери статус</s:String>
     <s:String x:Key="edittasktext">Редактировать задание</s:String>
+
+    <s:String x:Key="Card">Карта</s:String>
+    <s:String x:Key="history">История посещений</s:String>
+    <s:String x:Key="Status">Статус</s:String>
+    <s:String x:Key="number">Мой номер</s:String>
+    <s:String x:Key="profil">Профиль</s:String>
+   
 
     <s:String x:Key="searchstring">Найти</s:String>
     <s:String x:Key="id">id</s:String>

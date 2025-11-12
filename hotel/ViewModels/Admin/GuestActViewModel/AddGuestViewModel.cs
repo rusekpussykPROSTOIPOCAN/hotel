@@ -25,7 +25,7 @@ namespace hotel.ViewModels.Admin.GuestActViewModel
         private string _mname;
 
         [ObservableProperty]
-        private DateTime _birthday = DateTime.Now; // Значение по умолчанию
+        private DateTime _birthday = DateTime.Now; 
 
         [ObservableProperty]
         private string _log;
@@ -49,8 +49,8 @@ namespace hotel.ViewModels.Admin.GuestActViewModel
                 string pass = HashPassword(Pass);
                 string serNum = HashPassword(Sernum);
 
-                // Проверяем, что пользователь с таким серийным номером не существует
-                if (Convert.ToInt32(DataBaseService.Instance.ExecuteQuery(
+               
+                if (Convert.ToInt32(LoginService.Instance.LoginServic(
                     $"SELECT COUNT(1) FROM users WHERE serianumHASH = '{serNum}'").Rows[0][0]) == 0)
                 {
                     string sql = @"INSERT INTO users (id_guest, name, lname, mname, birthday, serianumHASH, log, pass_hash, id_role) 
@@ -68,7 +68,7 @@ namespace hotel.ViewModels.Admin.GuestActViewModel
                         {"@Pass", pass}
                     };
 
-                    DataBaseService.Instance.ExecuteQuery(sql, parameters);
+                   LoginService.Instance.LoginServic(sql, parameters);
                     MessageBox.Show("Гость успешно добавлен!");
                     ClearFields();
                 }
@@ -79,14 +79,14 @@ namespace hotel.ViewModels.Admin.GuestActViewModel
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при добавлении гостя: {ex.Message}");
+                MessageBox.Show($"Ошибка при добавлении гостя: {ex.Message}"); return;
             }
         }
 
         private int GenerateGuestId()
         {
           
-            var result = DataBaseService.Instance.ExecuteQuery("SELECT COALESCE(MAX(id_guest), 0) + 1 FROM users");
+            var result = LoginService.Instance.LoginServic("SELECT COALESCE(MAX(id_guest), 0) + 1 FROM users");
             return Convert.ToInt32(result.Rows[0][0]);
         }
 

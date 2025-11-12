@@ -19,28 +19,33 @@
         <DataGrid ItemsSource="{Binding Rooms}" Visibility="{Binding IsVis}" IsReadOnly="{Binding IsReadOnly}" x:Name="NumsTable" Grid.Row="1" AutoGenerateColumns="False">
                 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Номер" Binding="{Binding num}"/>
-                <DataGridTextColumn Header="Карта" Binding="{Binding Card.Card_num}"/>
-                <DataGridTextColumn Header="Количество мест" Binding="{Binding count_bad}"/>
-                <DataGridTextColumn Header="Статус" Binding="{Binding StatusRoom.Status}"/>
-                <DataGridTextColumn Header="Тип комнаты" Binding="{Binding RoomType.Type}"/> 
-                <DataGridTextColumn Header="Гость" Binding="{Binding Guest.FullName}"/>
+                <DataGridTextColumn Header="{StaticResource Num}" Binding="{Binding num}"/>
+                <DataGridTextColumn Header="{StaticResource Card}" Binding="{Binding Card.Card_num}"/>
+                <DataGridTextColumn Header="{StaticResource CountBads}" Binding="{Binding count_bad}"/>
+                <DataGridTextColumn Header="{StaticResource Status}" Binding="{Binding StatusRoom.Status}"/>
+                <DataGridTextColumn Header="{StaticResource NumType}" Binding="{Binding RoomType.Type}"/>
+                <DataGridTextColumn Header="{StaticResource NFM}" Binding="{Binding Guest.FullName}"/>
+                <DataGridTextColumn Header="{StaticResource DateCheckIn}" Binding="{Binding datein, StringFormat=yyyy-MM-dd }"/>
+                <DataGridTextColumn Header="{StaticResource DateCheckOut}" Binding="{Binding dateout, StringFormat=yyyy-MM-dd}"/>
+                <DataGridTextColumn Header="{StaticResource DateCheckOut}" Binding="{Binding PriceNigth}"/>
                 <DataGridTemplateColumn Header="Действия">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <btn:Btn Visib="{Binding Guest.Check}" Placeholder="{StaticResource checkoutstring}" Command="{Binding checkoutCommand}" />
-                                <btn:Btn Placeholder="{StaticResource editguest}" Wigth="150" Command="{Binding editCommand}" />
+                                <btn:Btn Visib="{Binding Guest.Check}" Placeholder="{StaticResource checkoutstring}" Params="{Binding}"  Command="{Binding 
+                                    DataContext.checkoutCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
+                                <btn:Btn Placeholder="{StaticResource editguest}" Wigth="150" Params="{Binding}" Command="{Binding DataContext.editCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="2">
-            <btn:Btn Placeholder="{StaticResource checkinstring}" Command="{Binding checkinCommand}" Visib="{Binding IsVischeckin}"/>
-           
-        </StackPanel>
+
+        <btn:Btn Placeholder="Сохранить" Grid.Row="2"
+                     Command="{Binding editCommand}" 
+                     Visibility="{Binding IsVisEdit}" 
+                     Width="150" Margin="5"/>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>

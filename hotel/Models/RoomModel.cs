@@ -13,8 +13,12 @@ namespace hotel.Models
         public int count_bad { get; set; }
         public int id_status { get; set; } 
         public int id_guest { get; set; } 
+        public decimal PriceNigth { get; set; }
+        public DateTime datein { get; set; }
+        public DateTime dateout { get; set; }
         public virtual StatusRoomModel StatusRoom { get; set; }
         public virtual usersModel Guest { get; set; }
+        
 
     }
 }

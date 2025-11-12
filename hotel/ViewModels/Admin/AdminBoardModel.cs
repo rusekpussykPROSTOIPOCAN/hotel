@@ -40,17 +40,16 @@ namespace hotel.ViewModels.Admin
         private void ShowThird() {
             CurrentPage = new Nums();
         }
-        [RelayCommand]
-        private void ShowFourth() { 
-            CurrentPage = new Sells();
-        }
-        [RelayCommand]
-        private void ShowFiveth() {
-            CurrentPage = new Schedule();
-        }
+        
+       
+        
         [RelayCommand]
         private void ShowSixth() {
             CurrentPage = new Tasks();
+        }
+        [RelayCommand]
+        private void ShowHistory() {
+            CurrentPage = new History();
         }
 
     }

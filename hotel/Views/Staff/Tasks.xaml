@@ -28,16 +28,25 @@
                     <DataGridTextColumn Header="Выполняющий" Binding="{Binding Staff.FullName}" />
                     <DataGridTextColumn Header="Статус" Binding="{Binding StatusTask.StatusTask}" />
 
-                    <DataGridTemplateColumn Header="Действия">
+                    <DataGridTemplateColumn   Header="Действия">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <btn:Btn Placeholder="Удалить" 
+                                    <btn:Btn Placeholder="Удалить" Visib="{Binding Check}"
                                              Command="{Binding DataContext.deleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
-                                             Params="{Binding}" />
-                                    <btn:Btn Placeholder="Редактировать" 
+                                             Params="{Binding}"  />
+                                    <btn:Btn Placeholder="Редактировать" Visib="{Binding Check}"
                                              Command="{Binding DataContext.editCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
-                                             Params="{Binding}"/>
+                                             Params="{Binding}" />
+                                    
+                                    <btn:Btn Placeholder="Выполнено" Visib="{Binding CheckGuest}"
+                                             Command="{Binding DataContext.CompleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
+                                             Params="{Binding}" />
+                                    
+                                    <btn:Btn Placeholder="Отменено" Visib="{Binding CheckGuest}"
+                                             Command="{Binding DataContext.CancelCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
+                                             Params="{Binding}" />
+                                    
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

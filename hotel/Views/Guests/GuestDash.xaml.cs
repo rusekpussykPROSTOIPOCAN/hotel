@@ -12,16 +12,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace hotel.Views.Admin
+namespace hotel.Views.Guests
 {
     /// <summary>
-    /// Логика взаимодействия для Sells.xaml
+    /// Логика взаимодействия для GuestDash.xaml
     /// </summary>
-    public partial class Sells : UserControl
+    public partial class GuestDash : Window
     {
-        public Sells()
+        public GuestDash()
         {
             InitializeComponent();
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.Show();
+            this.Close();
         }
     }
 }

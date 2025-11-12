@@ -115,7 +115,6 @@ namespace hotel.ViewModels.Admin
             LoadGuest();
         }
        
-            private EditGuestViewModel editVm;
         [RelayCommand]
         public void Back()
         {
@@ -126,6 +125,7 @@ namespace hotel.ViewModels.Admin
             IsVisGuestAdd = "Visible";
             IsVisBack = Togle(IsVisBack);
         }
+            private EditGuestViewModel editVm;
         [RelayCommand]
         public void EditGuest(usersModel param)
         {

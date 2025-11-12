@@ -18,18 +18,36 @@ namespace hotel.ViewModels.Staff
         [ObservableProperty]
         private string _isVisBack = "Hidden";
         [ObservableProperty]
+        private string _isAdmin = "Hidden";
+        [ObservableProperty]
         private object _currentpage;
         [ObservableProperty]
-        private string _isVis = "Visibly";
+        private string _isVis = "Hidden";
         [ObservableProperty]
         private string _isVisEdit = "Hidden";
         [ObservableProperty]
-        private string _isVisCreate = "Visibly";
+        private string _isVisCreate = "Hidden";
         [ObservableProperty]
         private ObservableCollection<TaskModel> _tasks =new();
         public TascksViewModel(){
-            Currentpage = null;
-            LoadTask();
+            if (DataBaseService.Instance.Currentuser.Role.Role == "admin")
+            {
+                IsVisBack = "Hidden";
+                IsVis = "Visibly";
+                IsVisEdit = "Hidden";
+                IsVisCreate = "Visibly";
+                Currentpage = null;
+                IsAdmin = "Visibly";
+                LoadTask();
+            }
+            else
+            {
+                IsVis = "Visibly";
+                IsAdmin = "Hidden";
+                Currentpage = null;
+                LoadTask();
+            }
+            
         }
        
         public string Togle(string a)
@@ -69,6 +87,21 @@ namespace hotel.ViewModels.Staff
 
 
         }
+        [RelayCommand]
+        public void Complete(TaskModel task)
+        {
+            DataBaseService.Instance.ExecuteQuery($"Update tasks set status_task_id= 2 where id_task = {task.Id} ");
+            LoadTask();
+        }
+        [RelayCommand]
+        public void Cancel(TaskModel task)
+        {
+            DataBaseService.Instance.ExecuteQuery($"Update tasks set status_task_id= 3 where id_task = {task.Id} ");
+            LoadTask();
+
+        }
+        
+
         [RelayCommand]
         public void delete(TaskModel param)
         {

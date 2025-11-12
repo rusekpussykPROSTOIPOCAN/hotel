@@ -1,5 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-
+using hotel.Views.Staff;
 namespace hotel.ViewModels.Staff
 {
     public partial class StaffBoardViewModel:ObservableObject
@@ -9,7 +9,7 @@ namespace hotel.ViewModels.Staff
 
         public StaffBoardViewModel()
         {
-            Current = null;
+            Current = new Tasks();
         }
 
 

@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="hotel.Views.History"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:hotel.Views"
+             mc:Ignorable="d" 
+             xmlns:btn="clr-namespace:hotel.Common.Base"
+             xmlns:vm="clr-namespace:hotel.ViewModels"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:HistoryViewModel/>
+    </UserControl.DataContext>
+    
+    <Grid>
+        <DataGrid ItemsSource="{Binding CheckInModels}"  IsReadOnly="True" Grid.Row="1" AutoGenerateColumns="False">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{StaticResource DateCheckIn}" Binding="{Binding datein, StringFormat=dd.MM.yyyy}"/>
+                <DataGridTextColumn Header="{StaticResource DateCheckOut}" Binding="{Binding dateout, StringFormat= dd.MM.yyyy}"/>
+                <DataGridTextColumn Header="{StaticResource Num}" Binding="{Binding room.num}"/>
+                <DataGridTextColumn Header="{StaticResource Guest}" Binding="{Binding UsersModel.FullName}"/>
+                <DataGridTextColumn Header="{StaticResource NumType}" Binding="{Binding roomType.Type}"/>
+                <DataGridTextColumn Header="{StaticResource Card}" Binding="{Binding card.Card_num}"/>
+                <DataGridTextColumn Header="{StaticResource selltext}" Binding="{Binding priceNigth}"/>
+              
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</UserControl>

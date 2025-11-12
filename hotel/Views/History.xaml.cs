@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace hotel.Views
 {
     /// <summary>
-    /// Логика взаимодействия для Schedule.xaml
+    /// Логика взаимодействия для History.xaml
     /// </summary>
-    public partial class Schedule : UserControl
+    public partial class History : UserControl
     {
-        public Schedule()
+        public History()
         {
             InitializeComponent();
         }

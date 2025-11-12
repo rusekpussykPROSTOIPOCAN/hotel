@@ -46,7 +46,7 @@ namespace hotel.ViewModels
         {
             Booking.Clear();
 
-            DataTable dataTable = DataBaseService.Instance.ExecuteQuery("SELECT users.id_guest,rooms.id_typeRoom,users.name,paystatus.statuss,users.lname,users.mname,statusesrooms.status, " +
+            DataTable dataTable = DataBaseService.Instance.ExecuteQuery("SELECT rooms.price,users.id_guest,rooms.id_typeRoom,users.name,paystatus.statuss,users.lname,users.mname,statusesrooms.status, " +
                 "statusesrooms.id_status_room ,rooms.Id_Room, rooms.num ,id_booking, date, booking.id_room,  " +
                 "booking.idpaystatus,  booking.id_guest from booking left join rooms on booking.id_room=rooms.Id_Room " +
                 "left join paystatus on paystatus.id_status =booking.idpaystatus left join users on users.id_guest = booking.id_guest " +
@@ -60,26 +60,28 @@ namespace hotel.ViewModels
                     id_room = Convert.ToInt32(item["id_room"]),
                     RoomModel = new RoomModel
                     {
-                        Id= Convert.ToInt32(item["Id_Room"]),
+                        Id = Convert.ToInt32(item["Id_Room"]),
                         num = item["num"].ToString(),
-                        id_typeroom= Convert.ToInt32(item["id_typeRoom"])
-                     
+                        id_typeroom = Convert.ToInt32(item["id_typeRoom"]),
+                        PriceNigth = Convert.ToDecimal(item["price"])
+
                     },
                     idstatus = Convert.ToInt32(item["id_status_room"]),
-                    Status = new StatusRoomModel { 
+                    Status = new StatusRoomModel
+                    {
                         Id = Convert.ToInt32(item["id_status_room"]),
                         Status = item["status"].ToString()
                     },
                     id_guest = Convert.ToInt32(item["id_guest"]),
                     usersModel = new usersModel
                     {
-                       Id = Convert.ToInt32(item["id_guest"]),
-                       Name = item["name"].ToString(),
-                       Lname = item["lname"].ToString(),
-                       Mname = item["mname"].ToString()
+                        Id = Convert.ToInt32(item["id_guest"]),
+                        Name = item["name"].ToString(),
+                        Lname = item["lname"].ToString(),
+                        Mname = item["mname"].ToString()
 
                     },
-                     id_pay = Convert.ToInt32(item["idpaystatus"]),
+                    id_pay = Convert.ToInt32(item["idpaystatus"]),
                     Paystatus = new PaystatusModel
                     {
                         Id = Convert.ToInt32(item["idpaystatus"]),
@@ -101,7 +103,7 @@ namespace hotel.ViewModels
                 {
                     Num = param.RoomModel.num,
                     Nfm = param.usersModel.FullName,
-                    Price = 100,
+                    Price= param.RoomModel.PriceNigth,
                     Checkin = param.date,
                     Checkout = param.date,
                     RoomId = param.id_room,

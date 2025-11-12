@@ -3,6 +3,8 @@ using CommunityToolkit.Mvvm.Input;
 using Google.Protobuf.WellKnownTypes;
 using hotel.Models;
 using hotel.Services;
+using hotel.Views.Admin;
+using Org.BouncyCastle.Crypto;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,23 +13,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace hotel.ViewModels.Admin.BookingActViewModel
 {
-  public partial  class EditBookingViewModel:ObservableObject
+    public partial class EditBookingViewModel : ObservableObject
     {
         [ObservableProperty]
-        private string _num ;
+        private string _num;
         [ObservableProperty]
-        private int _id ;
+        private int _id;
         [ObservableProperty]
-        private ObservableCollection<CardModel> _card = new ObservableCollection<CardModel>() ;
+        private ObservableCollection<CardModel> _card = new ObservableCollection<CardModel>();
         [ObservableProperty]
-        private string _nfm ;
+        private string _nfm;
         [ObservableProperty]
-        private object _selectedCard ;
+        private object _selectedCard;
+
+
         [ObservableProperty]
-        private decimal _price ;
+        private decimal _price;
         [ObservableProperty]
         private DateTime _checkin;
         [ObservableProperty]
@@ -38,39 +43,57 @@ namespace hotel.ViewModels.Admin.BookingActViewModel
         private int _guestId;
         [ObservableProperty]
         private int _typeRoomId;
-        public EditBookingViewModel( )
+        public EditBookingViewModel()
         {
             Load();
-           
+
         }
 
         [RelayCommand]
         public void CheckIn(BookingModel a)
         {
-            string q = @"INSERT INTO checkin (id_checkin, datein, dateout, id_num, id_guest, priceNigth, id_typeRoom, id_card) VALUES(@id_checkin, @datein, @dateout, 
-@id_num, @id_guest, @priceNigth, @id_typeRoom, @id_card )";
+            string q = @"INSERT INTO checkin (id_checkin, datein, dateout, id_num, id_guest, sell, id_typeRoom, id_card) 
+                VALUES(@id_checkin, @datein, @dateout, @id_num, @id_guest, @priceNigth, @id_typeRoom, @id_card)";
+
             if (SelectedCard is CardModel ds)
             {
+               
+                var checkinParams = new Dictionary<string, object>
+        {
+            {"@id_checkin", GenerateGuestId() },
+            {"@datein", Checkin.ToString("yyyy-MM-dd")},
+            {"@dateout", Checkout.ToString("yyyy-MM-dd")},
+            {"@id_num", RoomId},
+            {"@id_guest", GuestId },
+            {"@priceNigth", Price},
+            {"@id_typeRoom", TypeRoomId},
+            {"@id_card", ds.Id }
+        };
 
-            var parameters = new Dictionary<string, object>
-                    {
-                        {"@id_checkin", GenerateGuestId() },
-                        {"@datein",Checkin.ToString("yyyy-MM-dd")},
-                        {"@dateout", Checkout.ToString("yyyy-MM-dd")},
-                        {"@id_num",RoomId},
-                        {"@id_guest",GuestId },
-                        {"@priceNigth", Price},
-                        {"@id_typeRoom", TypeRoomId},
-                        {"@id_card", ds.Id }
-
-                        
-                    };
-
-            DataTable dataTable = DataBaseService.Instance.ExecuteQuery(q,parameters);
+                DataTable dataTable = DataBaseService.Instance.ExecuteQuery(q, checkinParams);
                 DataBaseService.Instance.ExecuteQuery($"DELETE FROM booking WHERE id_booking={Id}");
-                DataBaseService.Instance.ExecuteQuery($"UPDATE cards set inproc = 1 where id_cards = {ds.Id}");
+
+              
+                string updateQuery = @"UPDATE rooms 
+                              SET id_guest = @id_guest, 
+                                  id_status = 3, 
+                                  id_card = @id_card,
+                                  datein = @datein,
+                                  dateout = @dateout
+                              WHERE Id_Room = @room_id";
+
+                var roomParams = new Dictionary<string, object>  
+        {
+            {"@id_guest", GuestId},
+            {"@id_card", ds.Id},
+            {"@datein", Checkin.ToString("yyyy-MM-dd")}, 
+            {"@dateout", Checkout.ToString("yyyy-MM-dd")},
+            {"@room_id", RoomId} 
+        };
+
+                DataTable dataTables = DataBaseService.Instance.ExecuteQuery(updateQuery, roomParams);
+                DataBaseService.Instance.ExecuteQuery($"UPDATE cards SET inproc = 1 WHERE id_cards = {ds.Id}");
             }
-            
         }
         private void Load()
         {
@@ -87,13 +110,15 @@ namespace hotel.ViewModels.Admin.BookingActViewModel
                 });
             }
         }
+
+     
         private int GenerateGuestId()
         {
 
             var result = DataBaseService.Instance.ExecuteQuery("SELECT COALESCE(MAX(id_checkin), 0) + 1 FROM checkin");
             return Convert.ToInt32(result.Rows[0][0]);
         }
-       
-        
+
+
     }
 }

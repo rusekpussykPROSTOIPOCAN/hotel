@@ -1,7 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using hotel.Models;
 using hotel.Services;
 using hotel.Views.Admin;
+using hotel.Views.Guests;
+using hotel.Views.Staff;
 using System.Data;
 using System.Windows;
 
@@ -73,7 +76,15 @@ namespace hotel.ViewModels
             }
             else if (role == "staff")
             {
+               StaffBoard a= new StaffBoard();
+                a.Show();
+            }
+            else if (role == "guest")
+            {
+                usersModel usersModel = new usersModel();
                
+                GuestDash guestsBoard = new GuestDash();
+                guestsBoard.Show();
             }
             else
             {

@@ -5,8 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hotel.Views.Admin.NumsAct"
         mc:Ignorable="d"
-         Height="450" Width="800">
+             xmlns:btn="clr-namespace:hotel.Common.Base"
+             xmlns:vm="clr-namespace:hotel.ViewModels.Admin.NumsActViewModel"
+         Height="Auto" Width="Auto">
+    <UserControl.DataContext>
+        <vm:NumsEditViewModel/>
+    </UserControl.DataContext>
     <Grid>
-        
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" CanVerticallyScroll="True">
+
+            <btn:yCombobox SelectedItem="{Binding Num, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"   Text="{StaticResource Num}" ItemsSource="{Binding Rooms}" DisplayMemberPath="num" Wigth="545" />
+            <btn:yCombobox SelectedItem="{Binding Guest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="{StaticResource Guest}" ItemsSource="{Binding Users}" DisplayMemberPath="FullName" Wigth="545"  />
+            <btn:yCombobox Visibility="{Binding Vis}" SelectedItem="{Binding Card, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="{StaticResource Card}" ItemsSource="{Binding Cards}" DisplayMemberPath="Card_num" Wigth="545"  />
+            <btn:yCombobox SelectedItem="{Binding Typenum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="{StaticResource NumType}" ItemsSource="{Binding Typeroom}" DisplayMemberPath="Type" Wigth="545"  />
+            <btn:yCombobox SelectedItem="{Binding Countbads, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="{StaticResource CountBads}" ItemsSource="{Binding Roombads}" DisplayMemberPath="count_bad" Wigth="545" />
+
+            <DatePicker SelectedDate="{Binding CheckInDate, StringFormat=yyyy-MM-dd}" 
+      BorderBrush="Transparent" 
+      />
+
+            <DatePicker SelectedDate="{Binding CheckOutDate, StringFormat=yyyy-MM-dd}" 
+      BorderBrush="Transparent" 
+      />
+
+
+        </StackPanel >
     </Grid>
 </UserControl>
