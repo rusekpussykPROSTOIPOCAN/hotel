@@ -12,8 +12,6 @@
         <vm:GuestsViewModel/>
     </UserControl.DataContext>
     <Grid>
-
-        <btn:MySearch Visib="{Binding IsVis}"  Grid.Row="0"/>
         <btn:DashBoasrdForAdmin UserControl="{Binding Currentpage}" Grid.Row="1"/>
         <DataGrid ItemsSource="{Binding Guest}" EnableColumnVirtualization="True" EnableRowVirtualization="True" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"   Grid.Row="1" AutoGenerateColumns="False" Visibility="{Binding IsVis}" IsReadOnly="{Binding IsReadOnly}">
             <DataGrid.Columns>

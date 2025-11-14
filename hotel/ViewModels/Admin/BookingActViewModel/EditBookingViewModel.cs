@@ -52,15 +52,15 @@ namespace hotel.ViewModels.Admin.BookingActViewModel
         [RelayCommand]
         public void CheckIn(BookingModel a)
         {
-            string q = @"INSERT INTO checkin (id_checkin, datein, dateout, id_num, id_guest, sell, id_typeRoom, id_card) 
-                VALUES(@id_checkin, @datein, @dateout, @id_num, @id_guest, @priceNigth, @id_typeRoom, @id_card)";
+            string q = @"INSERT INTO checkin ( datein, dateout, id_num, id_guest, sell, id_typeRoom, id_card) 
+                VALUES( @datein, @dateout, @id_num, @id_guest, @priceNigth, @id_typeRoom, @id_card)";
 
             if (SelectedCard is CardModel ds)
             {
                
                 var checkinParams = new Dictionary<string, object>
         {
-            {"@id_checkin", GenerateGuestId() },
+            
             {"@datein", Checkin.ToString("yyyy-MM-dd")},
             {"@dateout", Checkout.ToString("yyyy-MM-dd")},
             {"@id_num", RoomId},
@@ -112,12 +112,7 @@ namespace hotel.ViewModels.Admin.BookingActViewModel
         }
 
      
-        private int GenerateGuestId()
-        {
-
-            var result = DataBaseService.Instance.ExecuteQuery("SELECT COALESCE(MAX(id_checkin), 0) + 1 FROM checkin");
-            return Convert.ToInt32(result.Rows[0][0]);
-        }
+        
 
 
     }

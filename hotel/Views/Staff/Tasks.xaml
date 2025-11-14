@@ -14,7 +14,6 @@
     </UserControl.DataContext>
 
     <Grid>
-        <btn:MySearch Visibility="{Binding IsVis}" Grid.Row="0"/>
         <btn:DashBoasrdForAdmin UserControl="{Binding Currentpage}" Grid.Row="1"/>
 
         <ScrollViewer Visibility="{Binding IsVis}" Grid.Row="1" 

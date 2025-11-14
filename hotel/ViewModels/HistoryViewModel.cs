@@ -35,33 +35,32 @@ namespace hotel.ViewModels
             foreach (DataRow item in s.Rows)
             {
                 CheckInModels.Add(new CheckInModel {
-                    Id = Convert.ToInt32(item["id_checkin"]),
-                    datein = Convert.ToDateTime(item["datein"]),
-                    dateout = Convert.ToDateTime(item["dateout"]),
-                    id_room = Convert.ToInt32(item["id_num"]),
-                   room = new RoomModel
-                   {
-                       num = item["num"].ToString()
-                   },
-                   id_guest = Convert.ToInt32(item["id_guest"]),
+                    Id = item["id_checkin"] != DBNull.Value ? Convert.ToInt32(item["id_checkin"]) : 0,
+                    datein = item["datein"] != DBNull.Value ? Convert.ToDateTime(item["datein"]) : DateTime.MinValue,
+                    dateout = item["dateout"] != DBNull.Value ? Convert.ToDateTime(item["dateout"]) : DateTime.MinValue,
+                    id_room = item["id_num"] != DBNull.Value ? Convert.ToInt32(item["id_num"]) : 0,
+                    room = new RoomModel
+                    {
+                        num = item["num"] != DBNull.Value ? item["num"].ToString() : string.Empty
+                    },
+                    id_guest = item["id_guest"] != DBNull.Value ? Convert.ToInt32(item["id_guest"]) : 0,
                     UsersModel = new usersModel
                     {
-                        Name = item["name"].ToString(),
-                        Lname=item["lname"].ToString(),
-                        Mname=item["mname"].ToString()
-
+                        Name = item["name"] != DBNull.Value ? item["name"].ToString() : string.Empty,
+                        Lname = item["lname"] != DBNull.Value ? item["lname"].ToString() : string.Empty,
+                        Mname = item["mname"] != DBNull.Value ? item["mname"].ToString() : string.Empty
                     },
-                   priceNigth = Convert.ToDecimal(item["sell"]),
-                    id_typeRoom=Convert.ToInt32(item["id_typeRoom"]),
+                    priceNigth = item["sell"] != DBNull.Value ? Convert.ToDecimal(item["sell"]) : 0m,
+                    id_typeRoom = item["id_typeRoom"] != DBNull.Value ? Convert.ToInt32(item["id_typeRoom"]) : 0,
                     roomType = new RoomTypeModel
                     {
-                        Type = item["type"].ToString(),
+                        Type = item["type"] != DBNull.Value ? item["type"].ToString() : string.Empty
                     },
-                   id_card = Convert.ToInt32(item["id_card"]),
-                   card = new CardModel
-                   {
-                       Card_num = item["card_num"].ToString(),
-                   }
+                    id_card = item["id_card"] != DBNull.Value ? Convert.ToInt32(item["id_card"]) : 0,
+                    card = new CardModel
+                    {
+                        Card_num = item["card_num"] != DBNull.Value ? item["card_num"].ToString() : string.Empty
+                    }
                 });
             }
 

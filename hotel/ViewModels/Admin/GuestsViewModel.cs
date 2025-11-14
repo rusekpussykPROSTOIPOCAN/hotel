@@ -110,8 +110,13 @@ namespace hotel.ViewModels.Admin
         [RelayCommand]
         public void DeleteGuest(usersModel param)
         {
+            
 
-            DataBaseService.Instance.ExecuteQuery($"DELETE FROM users WHERE id_guest={param.Id}");
+                DataBaseService.Instance.ExecuteQuery($"DELETE FROM users WHERE id_guest={param.Id}");
+            
+            
+                MessageBox.Show("Кажется гость все еще в отеле. Выселите его из номера перед удалением. ");
+            
             LoadGuest();
         }
        

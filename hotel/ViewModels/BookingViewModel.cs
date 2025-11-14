@@ -55,37 +55,35 @@ namespace hotel.ViewModels
             {
                 Booking.Add(new BookingModel
                 {
-                    Id = Convert.ToInt32(item["id_booking"]),
-                    date = Convert.ToDateTime(item["date"]),
-                    id_room = Convert.ToInt32(item["id_room"]),
+                    Id = item["id_booking"] != DBNull.Value ? Convert.ToInt32(item["id_booking"]) : 0,
+                    date = item["date"] != DBNull.Value ? Convert.ToDateTime(item["date"]) : DateTime.MinValue,
+                    id_room = item["id_room"] != DBNull.Value ? Convert.ToInt32(item["id_room"]) : 0,
                     RoomModel = new RoomModel
                     {
-                        Id = Convert.ToInt32(item["Id_Room"]),
-                        num = item["num"].ToString(),
-                        id_typeroom = Convert.ToInt32(item["id_typeRoom"]),
-                        PriceNigth = Convert.ToDecimal(item["price"])
-
+                        Id = item["Id_Room"] != DBNull.Value ? Convert.ToInt32(item["Id_Room"]) : 0,
+                        num = item["num"] != DBNull.Value ? item["num"].ToString() : string.Empty,
+                        id_typeroom = item["id_typeRoom"] != DBNull.Value ? Convert.ToInt32(item["id_typeRoom"]) : 0,
+                        PriceNigth = item["price"] != DBNull.Value ? Convert.ToDecimal(item["price"]) : 0m
                     },
-                    idstatus = Convert.ToInt32(item["id_status_room"]),
+                    idstatus = item["id_status_room"] != DBNull.Value ? Convert.ToInt32(item["id_status_room"]) : 0,
                     Status = new StatusRoomModel
                     {
-                        Id = Convert.ToInt32(item["id_status_room"]),
-                        Status = item["status"].ToString()
+                        Id = item["id_status_room"] != DBNull.Value ? Convert.ToInt32(item["id_status_room"]) : 0,
+                        Status = item["status"] != DBNull.Value ? item["status"].ToString() : string.Empty
                     },
-                    id_guest = Convert.ToInt32(item["id_guest"]),
+                    id_guest = item["id_guest"] != DBNull.Value ? Convert.ToInt32(item["id_guest"]) : 0,
                     usersModel = new usersModel
                     {
-                        Id = Convert.ToInt32(item["id_guest"]),
-                        Name = item["name"].ToString(),
-                        Lname = item["lname"].ToString(),
-                        Mname = item["mname"].ToString()
-
+                        Id = item["id_guest"] != DBNull.Value ? Convert.ToInt32(item["id_guest"]) : 0,
+                        Name = item["name"] != DBNull.Value ? item["name"].ToString() : string.Empty,
+                        Lname = item["lname"] != DBNull.Value ? item["lname"].ToString() : string.Empty,
+                        Mname = item["mname"] != DBNull.Value ? item["mname"].ToString() : string.Empty
                     },
-                    id_pay = Convert.ToInt32(item["idpaystatus"]),
+                    id_pay = item["idpaystatus"] != DBNull.Value ? Convert.ToInt32(item["idpaystatus"]) : 0,
                     Paystatus = new PaystatusModel
                     {
-                        Id = Convert.ToInt32(item["idpaystatus"]),
-                        status = item["statuss"].ToString()
+                        Id = item["idpaystatus"] != DBNull.Value ? Convert.ToInt32(item["idpaystatus"]) : 0,
+                        status = item["statuss"] != DBNull.Value ? item["statuss"].ToString() : string.Empty
                     }
 
                 });

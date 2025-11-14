@@ -12,7 +12,7 @@
         <vm:NumsEditViewModel/>
     </UserControl.DataContext>
     <Grid>
-
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" CanVerticallyScroll="True">
 
             <btn:yCombobox SelectedItem="{Binding Num, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"   Text="{StaticResource Num}" ItemsSource="{Binding Rooms}" DisplayMemberPath="num" Wigth="545" />
@@ -20,6 +20,7 @@
             <btn:yCombobox Visibility="{Binding Vis}" SelectedItem="{Binding Card, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="{StaticResource Card}" ItemsSource="{Binding Cards}" DisplayMemberPath="Card_num" Wigth="545"  />
             <btn:yCombobox SelectedItem="{Binding Typenum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="{StaticResource NumType}" ItemsSource="{Binding Typeroom}" DisplayMemberPath="Type" Wigth="545"  />
             <btn:yCombobox SelectedItem="{Binding Countbads, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="{StaticResource CountBads}" ItemsSource="{Binding Roombads}" DisplayMemberPath="count_bad" Wigth="545" />
+                <btn:yCombobox Visibility="{Binding Vis}" SelectedItem="{Binding Statusnew, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="{StaticResource Status}" ItemsSource="{Binding Status}" DisplayMemberPath="Status" Wigth="545" />
 
             <DatePicker SelectedDate="{Binding CheckInDate, StringFormat=yyyy-MM-dd}" 
       BorderBrush="Transparent" 
@@ -31,5 +32,7 @@
 
 
         </StackPanel >
+            
+        </ScrollViewer>
     </Grid>
 </UserControl>

@@ -12,7 +12,7 @@ xmlns:vm ="clr-namespace:hotel.ViewModels"
         <vm:BookingViewModel/>
     </UserControl.DataContext>
     <Grid>
-        <btn:MySearch  Grid.Row="0" Visib="{Binding Vis2}"/>
+       
         <btn:DashBoasrdForAdmin Grid.Row="1"  UserControl="{Binding Currentpage}"/>
         <DataGrid IsReadOnly="True" ItemsSource="{Binding Booking}" Grid.Row="1" AutoGenerateColumns="False" Visibility="{Binding Vis2}">
             <DataGrid.Columns>

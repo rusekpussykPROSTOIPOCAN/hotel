@@ -23,7 +23,13 @@ namespace hotel.ViewModels.Admin.NumsActViewModel
         private usersModel _guest;
         private int idguest;
         [ObservableProperty]
-        private ObservableCollection<usersModel> _users = new ObservableCollection<usersModel>();
+        private ObservableCollection<usersModel> _users = new ObservableCollection<usersModel>(); [ObservableProperty]
+
+        private StatusRoomModel _statusnew;
+        private int idstatus;
+        [ObservableProperty]
+        private ObservableCollection<StatusRoomModel> _status = new ObservableCollection<StatusRoomModel>();
+
         [ObservableProperty]
         private CardModel _card;
         private int idcard;
@@ -55,6 +61,7 @@ namespace hotel.ViewModels.Admin.NumsActViewModel
             {
                 Vis = "Visibly";
                 LoadGuest();
+                Loadstatus();
             }
             LoadCards();
             LoadTypeRoom();
@@ -64,15 +71,15 @@ namespace hotel.ViewModels.Admin.NumsActViewModel
         public void Booking()
         {
 
-            if (sell == null || numid == null || idguest == null || idtypenum == null ||  Guest == null  || Typenum == null || Countbads == null)
+            if (sell == 0 || numid == 0 || idguest == 0 || idtypenum == 0 ||  Guest == null  || Typenum == null || Countbads == null)
             {
                 MessageBox.Show("Введите данные"); return;
             }
            
-            string q = "insert into booking(id_booking, date, id_room, idpaystatus, id_guest) values(@id_booking, @date, @id_room, @idpaystatus, @id_guest)";
+            string q = "insert into booking( date, id_room, idpaystatus, id_guest) values( @date, @id_room, @idpaystatus, @id_guest)";
             var param = new Dictionary<string, object>
             {
-                {"@id_booking", GenerateGuestId()},
+                
                 { "@date" , CheckInDate},
                 { "@dateout", CheckOutDate},
                 {"@id_room",  numid},
@@ -91,10 +98,17 @@ namespace hotel.ViewModels.Admin.NumsActViewModel
         public void CheckIn()
         {
 
-            if (sell == null || numid == null || idguest == null || idtypenum == null || idcard == null || Guest == null || Card == null || Typenum == null || Countbads == null )
+            if ((sell<=0||numid == 0 || idtypenum == 0 || Guest == null || Typenum == null || Countbads == null || idguest == 0 || idcard == 0) && idstatus==0)
             {
                 MessageBox.Show("Введите данные"); return;
             }
+            if (idstatus != 0 && idguest==0 )
+            {
+                DataTable data = DataBaseService.Instance.ExecuteQuery($"Update rooms set id_status = {idstatus} where Id_Room = {numid}");
+            }
+            else
+            {
+
             sell *= (CheckOutDate.Date - CheckInDate.Date).Days+1;
             string q = "insert into checkin(id_checkin, datein, dateout, id_num, id_guest, id_typeRoom, id_card, sell) values(@id_checkin, @datein, @dateout, @id_num, @id_guest, " +
                  "@id_typeRoom, @id_card,@sell)";
@@ -113,7 +127,7 @@ namespace hotel.ViewModels.Admin.NumsActViewModel
             DataBaseService.Instance.ExecuteQuery(q, param);
             string updateQuery = @"UPDATE rooms 
                       SET id_guest = @id_guest, 
-                          id_status = 3, 
+                          id_status = @st, 
                           id_card = @id_card,
                           datein = @datein,
                           dateout = @dateout
@@ -125,13 +139,15 @@ namespace hotel.ViewModels.Admin.NumsActViewModel
     {"@id_card", idcard},
     {"@datein", CheckInDate.Date},
     {"@dateout", CheckOutDate.Date},
-    {"@room_id", numid}
+    {"@room_id", numid},
+                {"@st", idstatus},
 };
 
             DataTable dataTable = DataBaseService.Instance.ExecuteQuery(updateQuery, parameters);
            
           /*  sell = 0; numid = 0; idguest = 0;  idtypenum = 0; idcard = 0; Num = null;
             Guest = null;Card = null;Typenum = null; Countbads = null;*/
+            }
         }
         private int GenerateGuestId()
         {
@@ -143,13 +159,13 @@ namespace hotel.ViewModels.Admin.NumsActViewModel
         {
 
             Rooms.Clear();
-            DataTable data = DataBaseService.Instance.ExecuteQuery("select Id_Room,num, id_typeRoom, price from rooms where id_card is null");
+            DataTable data = DataBaseService.Instance.ExecuteQuery("select rooms.Id_Room,num, id_typeRoom, price from rooms left join booking on booking.id_room = rooms.Id_Room where id_card is null and booking.id_room is null");
             foreach (DataRow row in data.Rows)
             {
                 Rooms.Add(new RoomModel
                 {
                     Id = Convert.ToInt32(row["Id_Room"]),
-                    num = row["num"].ToString(),
+                    num = row["num"] != DBNull.Value? row["num"].ToString():"нет номеров",
                     id_typeroom = Convert.ToInt32(row["id_typeRoom"]),
                     
                 });
@@ -168,11 +184,23 @@ namespace hotel.ViewModels.Admin.NumsActViewModel
                 });
 
             }
+        } private void Loadstatus()
+        {
+            Status.Clear();
+            DataTable data = DataBaseService.Instance.ExecuteQuery("select id_status_room,statusesrooms.status from statusesrooms;");
+            foreach (DataRow item in data.Rows)
+            {
+                Status.Add(new StatusRoomModel
+                {
+                    Id = Convert.ToInt32(item["id_status_room"]),
+                    Status = item["status"].ToString()
+                });
+            }
         }
         private void LoadTypeRoom()
         {
             Typeroom.Clear();
-            DataTable data = DataBaseService.Instance.ExecuteQuery("select Id_TypeNum, type from roomtype");
+            DataTable data = DataBaseService.Instance.ExecuteQuery("select Id_TypeNum, type from roomtype left join rooms on rooms.id_typeRoom  = roomtype.Id_TypeNum where rooms.id_typeRoom is not null");
             foreach (DataRow row in data.Rows)
             {
                 Typeroom.Add(new RoomTypeModel
@@ -186,7 +214,7 @@ namespace hotel.ViewModels.Admin.NumsActViewModel
         private void LoadCountBads()
         {
             Roombads.Clear();
-            DataTable data = DataBaseService.Instance.ExecuteQuery("select  distinct count_bad, Id_Room, price from rooms");
+            DataTable data = DataBaseService.Instance.ExecuteQuery("select  distinct count_bad, Id_Room, price from rooms where id_card is null");
             foreach (DataRow row in data.Rows)
             {
                 Roombads.Add(new RoomModel
@@ -243,9 +271,9 @@ namespace hotel.ViewModels.Admin.NumsActViewModel
         {
             if (value != null)
             {
-               Num = Rooms.FirstOrDefault(t=>t.id_typeroom == value.Id);
-                var  a = Rooms.FirstOrDefault(t => t.id_typeroom == value.Id);
-                Countbads = Roombads.FirstOrDefault(t=>t.Id == a.Id);
+               Num = Rooms.FirstOrDefault(t=>t.Id == value.Id);
+               
+                Countbads = Roombads.FirstOrDefault(t=>t.Id == Num.Id);
                 idtypenum = value.Id;
             }
         }
@@ -258,6 +286,10 @@ namespace hotel.ViewModels.Admin.NumsActViewModel
                 Typenum = Typeroom.FirstOrDefault(t=>t.Id == a.id_typeroom);
                 sell = value.PriceNigth;
             }
+        }
+        partial void OnStatusnewChanged(StatusRoomModel value)
+        {
+            idstatus = value.Id;
         }
     }
 }

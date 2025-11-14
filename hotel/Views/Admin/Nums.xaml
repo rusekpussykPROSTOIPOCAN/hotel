@@ -14,7 +14,6 @@
         <vm:NumsViewModel/>
     </UserControl.DataContext>
     <Grid>
-        <btn:MySearch Visib="{Binding IsVis}" />
         <btn:DashBoasrdForAdmin Grid.Row="1" UserControl="{Binding Currentpage}"/>
         <DataGrid ItemsSource="{Binding Rooms}" Visibility="{Binding IsVis}" IsReadOnly="{Binding IsReadOnly}" x:Name="NumsTable" Grid.Row="1" AutoGenerateColumns="False">
                 
@@ -34,7 +33,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <btn:Btn Visib="{Binding Guest.Check}" Placeholder="{StaticResource checkoutstring}" Params="{Binding}"  Command="{Binding 
                                     DataContext.checkoutCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
-                                <btn:Btn Placeholder="{StaticResource editguest}" Wigth="150" Params="{Binding}" Command="{Binding DataContext.editCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
+                                <btn:Btn  Visib="{Binding Guest.Check1}" Placeholder="{StaticResource editguest}" Wigth="150" Params="{Binding}" Command="{Binding DataContext.editCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
